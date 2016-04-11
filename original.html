@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Audio File Writer</title>
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+        <script type="text/javascript" src="libs/jquery.js"></script>
+        <script type="text/javascript" src="libs/FileSaver.min.js"></script>
+        <script type="text/javascript" src="audiowriter-lib.js"></script>
+        <!-- sample base64 responses-->
+        <script type="text/javascript" src="test-response.js"></script>
+
+        <style>
+            @-moz-keyframes spin {
+              0% { -moz-transform:rotate(0deg); }
+              100% { -moz-transform:rotate(360deg); }
+            }
+            @-webkit-keyframes spin {
+              0% { -webkit-transform:rotate(0deg); }
+              100% { -webkit-transform:rotate(360deg); }
+            }
+            @-ms-keyframes spin {
+              0% { -ms-transform:rotate(0deg); }
+              100% { -ms-transform:rotate(360deg); }
+            }
+            @keyframes spin {
+              0% { transform:rotate(0deg); }
+              100% { transform:rotate(360deg); }
+            }
+            textarea {
+                width: 100%;
+                max-width: 100%;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            h3 {
+                display: inline-block;
+                margin-right: 20px;
+            }
+            .row-label {
+                font-weight: 300;
+                font-size: 18px;
+            }
+            p {
+                margin-bottom: 20px;
+            }
+            #fileUrl {
+                width: 80%;
+            }
+            #fileType {
+                width: 60%;
+            }
+            #fileUrl, #fileType {
+                height: 25px;
+                padding: 3px 5px;
+            }
+            span.row-label {
+                width: 120px;
+                display: inline-block;
+            }
+            input[disabled] {
+                opacity: 0.5;
+            }
+            input[type="text"] {
+                margin-bottom: 0;
+            }
+            label.do-xhr {
+                margin-left: 25px;
+            }
+            input[type="checkbox"] {
+                margin-top: 0;
+            }
+            label {
+                display: inline-block;
+            }
+            label.file-name {
+                margin-left: 10px;
+            }
+            .row-fluid {
+                padding: 20px 10px;
+            }
+            .row-fluid:not(:last-child) {
+                border-bottom: 1px solid #ddd;
+            }
+            .player-container {
+                position: relative;
+            }
+            #player.hidden {
+                visibility:hidden;
+            }
+            #loading-indicator {
+                margin: auto;
+                height: 30px;
+                width: 30px;
+                display: block;
+                position: absolute;
+                top: -30px;
+                left: -30px;
+                border: 5px solid #006dcc;
+                border-top-color: #006dcc;
+                border-left-color: rgba(0,109,204,0.25);
+                border-right-color: rgba(0,109,204,0.25);
+                border-bottom-color: rgba(0,109,204,0.25);
+                border-radius: 30px;
+                box-sizing: border-box;
+                margin : 30px;
+                animation: spin 0.5s infinite linear;
+            }
+            #loading-indicator.hidden {
+                display:none;
+                animation: none;
+            }
+            input[type="radio"]{
+                margin-top:0;
+                margin-right: 5px;
+            }
+        </style>
+    </head>
+
+    <body style="padding-top:20px;">
+        <div class="container-fluid">
+              <div class="row-fluid">
+                <div class="span6 player-container">
+                    <div id="loading-indicator" class="hidden"></div>
+                    <audio id="player" controls style="margin-bottom:5px;"></audio>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <span class="row-label">Playback:</span>
+                    <button id="buildDataUri">Ogg Data-Uri</button>
+                     <button id="convertToOggArrayBuffer">ArrayBuffer</button>
+                    <button id="convertToOggBlob">Ogg Blob</button>
+                    <button id="convertToWavBlob">Wav Blob</button>
+                    <label class="do-xhr">
+                        <input id="useXhr" type="checkbox" />
+                        use XHR (if applicable)
+                        </label>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <span class="row-label">Save:</span>
+                    <button id="saveWavFile" disabled>Wav File</button>
+                    <label class="file-name">File name:
+                        <input type="text" id="fileName" value="audio">
+                    </label>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12">
+                    <p class="row-label">Source:</p>
+                </div>
+                <div class="span8">
+                    <label class="source-select"><input type="radio" name="input-source" value="url"/>URL</label>
+                    <input type="text" id="fileUrl" value="">
+                </div>
+                 <div class="span3">
+                    <span>Type:</span>
+                    <input type="text" id="fileType" value="audio/ogg">
+                </div>
+                <div class="span12">
+                    <label class="source-select"><input type="radio" name="input-source" checked value="b64"/>Base64</label>
+                    <textarea id="base64" rows="6"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+        (function() {
+            window.AudioContext = window.AudioContext || window.webkitAudioContext;
+            var audioContext = new window.AudioContext();
+            var audiowriter = new AudioWriter();
+            var $audio = $('#player');
+            var audio = $audio[0];
+            var $source;
+            var autoPlayback = false;//true;
+            var wavBlob;
+            var oggBlob;
+            var doXhr = $('#useXhr').is(':checked');
+            var selectedSource = $('input[type=radio][name=input-source]:checked').val();
+
+            $('#base64').val( sampleResponses.opus );
+
+            $('#saveWavFile').attr('disabled', true);
+            $('#fileName').attr('disabled', true);
+
+            $('input[type=radio][name=input-source]').on('change', function() {
+                selectedSource = $(this).val();
+                toggleButtons( selectedSource );
+            });
+             $('#useXhr').on('change', function() {
+                doXhr = $(this).is(':checked');
+            });
+            var song = 'http://f.cl.ly/items/3A2N1U02463o0s3p2Z2c/myfirstchiptune.mp3'; //'/hopper.mp3'
+            var fType = 'audio/ogg'; //'audio/mpeg';
+            $('#fileUrl').val( song );
+            $('#fileType').val( fType );
+
+            function toggleButtons( selectedSource ) {
+                console.log('toggleButtons, selectedSource:',selectedSource);
+                var $datauri = $('#buildDataUri');
+                var $arraybuffer = $('#convertToOggArrayBuffer');
+                var $oggBlob = $('#convertToOggBlob');
+                var $wavBlob = $('#convertToWavBlob');
+                var $useXhr = $('#useXhr');
+                $useXhr.removeAttr( 'disabled' );
+                $datauri.removeAttr( 'disabled' );
+                $arraybuffer.removeAttr( 'disabled' );
+                $oggBlob.removeAttr( 'disabled' );
+                $wavBlob.removeAttr( 'disabled' );
+                if ( selectedSource !== 'b64' ) {
+                    $datauri.attr( 'disabled', true );
+                    $oggBlob.attr( 'disabled', true );
+                    $wavBlob.attr( 'disabled', true );
+                    $useXhr.attr( 'disabled', true );
+                }
+            }
+
+            $(document).on( 'wavBlobReady', function( e, blob ) {
+                wavBlob = blob;
+                var blobURL = URL.createObjectURL( wavBlob );
+                console.log('blobURL:',blobURL);
+                var xhrBlobUrl;
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', blobURL, true);
+                xhr.responseType = 'blob';
+                xhr.overrideMimeType('audio/wav');
+                xhr.onreadystatechange = function () {
+                    console.log('xhr:',xhr);
+                    if (xhr.readyState === 4 && xhr.status == 200) {
+                        xhrBlobUrl = window.URL.createObjectURL(xhr.response);
+                        createSource( xhrBlobUrl, 'audio/wav' );
+                        $('#saveWavFile').removeAttr('disabled');
+                        $('#fileName').removeAttr('disabled', true);
+                    }
+                };
+                xhr.send();
+            });
+
+            function onArrayBufferReady( arrayBuffer ) {
+                console.log('---- onArrayBufferReady');
+                var source = audioContext.createBufferSource();
+                audioContext.decodeAudioData(arrayBuffer, function(buffer) {
+                    console.log('decodeAudioData, buffer:',buffer);
+                    source.buffer = buffer;
+                    source.connect(audioContext.destination);
+                    togglePlayer(true);
+                    source.start(0);
+                });
+            }
+            function togglePlayer( show ) {
+                if (show) {
+                    $('#player').removeClass('hidden');
+                    $('#loading-indicator').addClass('hidden');
+                } else {
+                    $('#player').addClass('hidden');
+                    $('#loading-indicator').removeClass('hidden')
+                }
+            }
+            function createSource(src, type) {
+                $('#player').removeClass('hidden');
+                //console.log('createSource\n\ttype:',type,'\n\tsrc:',src);
+                if ( $source ) {
+                    $source.off();
+                }
+                $source = $( '<source src="'+src+'" type="'+type+'" />' );
+                $source.on('error', function(e) {
+                    alert('Audio Playback Error,  see console log');
+                    console.log('e:',e);
+                });
+                $audio.html( $source );
+                audio.load();
+                togglePlayer(true);
+            }
+
+            function buildSourceFromDataUri( b64 ) {
+                createSource('data:audio/ogg;base64,'+b64, 'audio/ogg' );
+            }
+
+            $('#buildDataUri').click( function () {
+                var b64 = $('#base64').val();
+                buildSourceFromDataUri( b64 );
+            });
+            $('#convertToOggArrayBuffer').click( function () {
+                togglePlayer(false);
+                var doDoXhr = doXhr;
+                var intArray;
+                var oggBlob;
+                var url;
+                if ( selectedSource === 'url' ) {
+                    var doDoXhr = true;
+                    url = $('#fileUrl').val();
+                    type = $('#fileType').val();
+                } else {
+                    var b64 = $('#base64').val();
+                    if ( b64 &&  b64.length > 0 ) {
+                        intArray = audiowriter.base64ToUintArray(b64);
+                        oggBlob = new Blob( [ intArray ], {type: 'audio/ogg'} );
+                        url =  URL.createObjectURL( oggBlob );
+                    }
+                }
+                console.log('convertToOggArrayBuffer, url:',url);
+                if ( doDoXhr ) {
+                    //var oggBlobURL =  'http://f.cl.ly/items/3A2N1U02463o0s3p2Z2c/myfirstchiptune.mp3';
+                    var xhrBlobUrl;
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', url, true);
+                    xhr.responseType = 'arraybuffer';
+                    xhr.overrideMimeType( type );
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status == 200) {
+                            console.log('OggArrayBufferREady, xhr:',xhr);
+                            onArrayBufferReady( xhr.response )
+                        }
+                    };
+                    xhr.send();
+                } else {
+                    onArrayBufferReady( intArray.buffer )
+                }
+            });
+
+            $('#convertToOggBlob').click( function () {
+                togglePlayer(false);
+                var b64 = $('#base64').val();
+                if ( b64 &&  b64.length > 0 ) {
+                    var oggBlob = audiowriter.convertBase64ToOgg( b64 );
+                    var blobURL = URL.createObjectURL( oggBlob );
+                    if ( !doXhr ) {
+                        createSource( blobURL, 'audio/ogg' );
+                    } else {
+                        var xhrBlobUrl;
+                        var xhr = new XMLHttpRequest();
+                        xhr.open('GET', blobURL, true);
+                        xhr.responseType = 'blob';
+                        xhr.overrideMimeType('audio/ogg');
+                        xhr.onreadystatechange = function () {
+                            if (xhr.readyState === 4 && xhr.status == 200) {
+                                console.log('oggBlobReady, xhr:',xhr);
+                                xhrBlobUrl = window.URL.createObjectURL(xhr.response);
+                                createSource( xhrBlobUrl, 'audio/ogg' );
+                            }
+                        };
+                        xhr.send();
+                    }
+                }
+            });
+            $('#convertToWavBlob').click( function () {
+                togglePlayer(false);
+                var b64 = $('#base64').val();
+                if ( b64 &&  b64.length > 0 ) {
+                    audiowriter.convertBase64ToWav( b64 );
+                }
+            });
+            $('#saveWavFile').click( function () {
+                saveAs( wavBlob, $('#fileName').val() + '.wav' );
+            });
+
+        })();
+        </script>
+
+    </body>
+</html>

@@ -1,0 +1,319 @@
+/* ---------------------------- variables ---------------------------- */
+/* ---------------------------- mixins ---------------------------- */
+/* ------------------------ animations ---------------------------- */
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg); }
+  100% {
+    -moz-transform: rotate(360deg); } }
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg); } }
+@-ms-keyframes spin {
+  0% {
+    -ms-transform: rotate(0deg); }
+  100% {
+    -ms-transform: rotate(360deg); } }
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(360deg); } }
+/* ---------------------------------------------------------------- */
+.tn8-recorder {
+  position: relative;
+  display: block;
+  width: 100%;
+  min-width: 220px;
+  margin-top: 10px; }
+  .tn8-recorder .spinner {
+    margin: 5px 11px;
+    float: left;
+    display: inline-block;
+    box-sizing: border-box;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    border-radius: 30px;
+    width: 30px;
+    height: 30px;
+    border: 4px solid;
+    border-top-color: #555;
+    border-left-color: rgba(0, 0, 0, 0.25);
+    border-right-color: rgba(0, 0, 0, 0.25);
+    border-bottom-color: rgba(0, 0, 0, 0.25);
+    -moz-animation: spin 0.5s infinite linear;
+    -webkit-animation: spin 0.5s infinite linear;
+    -ms-animation: spin 0.5s infinite linear;
+    animation: spin 0.5s infinite linear; }
+  .tn8-recorder .main {
+    padding: 8px 12px;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    -ms-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+    border-bottom: none;
+    min-height: 56px;
+    box-sizing: border-box; }
+    .tn8-recorder .main:after {
+      content: ".";
+      visibility: hidden;
+      display: block;
+      height: 0;
+      clear: both; }
+    .tn8-recorder .main.complete {
+      -webkit-border-radius: 4px;
+      -moz-border-radius: 4px;
+      -ms-border-radius: 4px;
+      border-radius: 4px;
+      border-bottom: 1px solid #ccc; }
+    .tn8-recorder .main > .input-meter {
+      float: right; }
+    .tn8-recorder .main > .control-button {
+      float: left; }
+      .tn8-recorder .main > .control-button.last {
+        margin-left: 10px; }
+      .tn8-recorder .main > .control-button.btn-inverse[disabled] {
+        color: #ffffff;
+        background-color: #222222; }
+    .tn8-recorder .main > .clear-button {
+      float: right; }
+      .tn8-recorder .main > .clear-button i {
+        vertical-align: middle;
+        width: initial;
+        height: initial;
+        color: #333;
+        font-size: 26px;
+        line-height: 30px; }
+    .tn8-recorder .main > .status-display {
+      width: -moz-calc(100% - 52px*2);
+      width: -webkit-calc(100% - 52px*2);
+      width: -ms-calc(100% - 52px*2);
+      width: calc(100% - 52px*2);
+      float: left;
+      box-sizing: border-box;
+      padding: 0 10px;
+      text-align: center;
+      line-height: 16px; }
+      .tn8-recorder .main > .status-display > .speaker-icon {
+        background-image: url("../images/recorder/speak-icon.png");
+        background-repeat: no-repeat;
+        background-position: center top;
+        background-size: 40px 40px;
+        height: 40px;
+        width: 100%; }
+      .tn8-recorder .main > .status-display .message {
+        margin-bottom: 5px; }
+  .tn8-recorder .visibily-hidden {
+    visibility: hidden; }
+  .tn8-recorder.recording .main {
+    background-image: none;
+    background-color: #666666;
+    border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); }
+    .tn8-recorder.recording .main > .input-meter {
+      background: url("../images/recorder/bars_bg.png");
+      background-repeat: no-repeat;
+      background-size: 45px 50px; }
+  .tn8-recorder i {
+    background-image: none;
+    text-shadow: none; }
+    .tn8-recorder i.before-text {
+      margin-right: 5px; }
+    .tn8-recorder i.icon-warning-sign {
+      font-size: 20px;
+      color: #aa0000;
+      margin-right: 10px; }
+  .tn8-recorder [class^="icon-"]:before, .tn8-recorder [class*=" icon-"]:before {
+    position: inherit;
+    font-size: inherit;
+    top: inherit; }
+  .tn8-recorder > .recorder-swf {
+    position: absolute;
+    left: -9999px; }
+    .tn8-recorder > .recorder-swf.shown {
+      z-index: 1010;
+      left: 0;
+      top: 0; }
+  .tn8-recorder > .debug {
+    line-height: 14px;
+    margin-top: 3px; }
+    .tn8-recorder > .debug label {
+      display: inline-block;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 0;
+      color: #666;
+      font-size: 10px;
+      margin-right: 12px;
+      line-height: 14px; }
+      .tn8-recorder > .debug label span {
+        margin-left: 2px;
+        font-size: 12px;
+        font-weight: normal;
+        text-transform: none;
+        color: #000; }
+  .tn8-recorder > .delete-dialog {
+    padding: 8px 8px;
+    width: 100%;
+    min-height: 100%;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    text-align: center;
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+    -webkit-border-radius: 4px 4px 5px 5px;
+    -moz-border-radius: 4px 4px 5px 5px;
+    -ms-border-radius: 4px 4px 5px 5px;
+    border-radius: 4px 4px 5px 5px; }
+    .tn8-recorder > .delete-dialog > .delete-message {
+      margin-bottom: 32px;
+      line-height: 16px; }
+    .tn8-recorder > .delete-dialog .button-holder {
+      width: -moz-calc(100% - 8px * 2);
+      width: -webkit-calc(100% - 8px * 2);
+      width: -ms-calc(100% - 8px * 2);
+      width: calc(100% - 8px * 2);
+      position: absolute;
+      bottom: 6px;
+      box-sizing: border-box; }
+    .tn8-recorder > .delete-dialog .btn {
+      width: auto;
+      height: auto;
+      padding: 2px 12px;
+      margin: 0 5px; }
+      .tn8-recorder > .delete-dialog .btn i {
+        line-height: 1.1em; }
+  .tn8-recorder > .progress {
+    background: none;
+    background-color: #ddd;
+    -webkit-border-radius: 0 0 5px 5px;
+    -moz-border-radius: 0 0 5px 5px;
+    -ms-border-radius: 0 0 5px 5px;
+    border-radius: 0 0 5px 5px;
+    height: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 0;
+    overflow: hidden;
+    -webkit-box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.15); }
+    .tn8-recorder > .progress > .bar {
+      -webkit-box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+      box-shadow: inset 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+      background-color: #149bdf;
+      -webkit-transition-property: none;
+      -moz-transition-property: none;
+      -ms-transition-property: none;
+      -o-transition-property: none;
+      transition-property: none;
+      -webkit-transition-timing-function: linear;
+      -moz-transition-timing-function: linear;
+      -ms-transition-timing-function: linear;
+      -o-transition-timing-function: linear;
+      transition-timing-function: linear;
+      width: 0%; }
+      .tn8-recorder > .progress > .bar.playing {
+        -webkit-transition-property: width;
+        -moz-transition-property: width;
+        -ms-transition-property: width;
+        -o-transition-property: width;
+        transition-property: width;
+        width: 100%; }
+      .tn8-recorder > .progress > .bar.stopped {
+        -webkit-transition-property: none;
+        -moz-transition-property: none;
+        -ms-transition-property: none;
+        -o-transition-property: none;
+        transition-property: none;
+        width: 100%; }
+      .tn8-recorder > .progress > .bar.reset {
+        -webkit-transition-property: width;
+        -moz-transition-property: width;
+        -ms-transition-property: width;
+        -o-transition-property: width;
+        transition-property: width;
+        -webkit-transition-timing-function: ease;
+        -moz-transition-timing-function: ease;
+        -ms-transition-timing-function: ease;
+        -o-transition-timing-function: ease;
+        transition-timing-function: ease;
+        -webkit-transition-duration: 0.5s !important;
+        -moz-transition-duration: 0.5s !important;
+        -ms-transition-duration: 0.5s !important;
+        -o-transition-duration: 0.5s !important;
+        transition-duration: 0.5s !important;
+        width: 0%; }
+    .tn8-recorder > .progress > .marker {
+      position: relative;
+      background-color: #fff;
+      width: 0px;
+      height: 8px;
+      left: 0%;
+      top: 1px;
+      -webkit-transition-property: none;
+      -moz-transition-property: none;
+      -ms-transition-property: none;
+      -o-transition-property: none;
+      transition-property: none;
+      -webkit-transition-timing-function: linear;
+      -moz-transition-timing-function: linear;
+      -ms-transition-timing-function: linear;
+      -o-transition-timing-function: linear;
+      transition-timing-function: linear; }
+      .tn8-recorder > .progress > .marker.playing {
+        width: 4px;
+        -webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+        box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.5);
+        -webkit-transition-property: left;
+        -moz-transition-property: left;
+        -ms-transition-property: left;
+        -o-transition-property: left;
+        transition-property: left;
+        left: 100%; }
+      .tn8-recorder > .progress > .marker.reset {
+        -webkit-transition-property: none;
+        -moz-transition-property: none;
+        -ms-transition-property: none;
+        -o-transition-property: none;
+        transition-property: none;
+        left: 0%;
+        width: 0px; }
+  .tn8-recorder .btn {
+    width: 52px;
+    height: 40px; }
+    .tn8-recorder .btn:focus {
+      background-position: 0px; }
+    .tn8-recorder .btn:hover {
+      background-position: 0 -15px; }
+  .tn8-recorder .btn-inverse > .btn-icon.stop {
+    background-color: #fff; }
+  .tn8-recorder .btn-icon {
+    margin: auto; }
+    .tn8-recorder .btn-icon.record {
+      width: 20px;
+      height: 20px;
+      background-color: #dd0000;
+      border-radius: 20px; }
+    .tn8-recorder .btn-icon.stop {
+      width: 20px;
+      height: 20px;
+      background-color: #333;
+      border-radius: 0px; }
+    .tn8-recorder .btn-icon.play {
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent;
+      border-left: 20px solid #333;
+      border-bottom: 10px solid transparent; }
+    .tn8-recorder .btn-icon.pause {
+      width: 6px;
+      height: 20px;
+      border-right: 5px solid #333;
+      border-left: 5px solid #000; }
+
+/*# sourceMappingURL=audiorecorder.css.map */
