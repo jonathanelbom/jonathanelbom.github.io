@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TN8 TEI - Audio Recording</title>
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+        <script type="text/javascript" src="js/jquery.js"></script>
+        <script type="text/javascript" src="js/swfobject.js"></script>
+        <style>
+            .recorder-swf {
+                display:block;
+            }
+            button {
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
+            button:not([disabled]) {
+                cursor: pointer;
+            }
+        </style>
+    </head>
+
+    <body style="padding:50px;">
+        <div class="container">
+            <button id="loadSwf">Embed SWF</button>
+            <button id="startSend" style="display:none">Start Sending Data Over External Interface</button>
+            <button id="stopSend" style="display:none">Stop Sending Data Over External Interface</button>
+        </div>
+
+        <script type="text/javascript">
+            var $container = $('.container');
+            var FLASH_URL = 'Main.swf';
+            var flash;
+            window.demo = window.demo || {};
+             // js function called from Flash ExternalInteraceExtended.call
+            window.demo.receiveData = function( data ) {
+            }
+
+            // start send data click handler
+            $('#startSend').on('click', function() {
+                flash.startSendData();
+            });
+
+            // stop send data click handler
+            $('#stopSend').on('click', function() {
+                flash.stopSendData();
+            });
+
+            // embed swf click handler
+            $('#loadSwf').on('click', function() {
+                //embed swf
+                var id = 'demo_swf';
+                $('<div id="' + id + '"><p>Flash Audio Recorder</p></div>')
+                    .appendTo( $container );
+                var flashVars = {
+                    id: id,
+                };
+                var params = {
+                    allowscriptaccess: "always",
+                    wmode: "transparent"
+                };
+                var attributes = {
+                    id: id,
+                    name: id,
+                    "class" : "recorder-swf"
+                };
+                var width = '215';
+                var height = '138';
+                swfobject.embedSWF( FLASH_URL, id, width, height, "10.3", false, flashVars, params, attributes, function(e) { // swf embed callback
+                        if (!e.success) {
+                            console.error('Flash plug-in <object> DOM creation failed');
+                        } else {
+                            flash = e.ref;
+                            $flash = $( flash );
+                            $('button').show();
+                            $('#loadSwf').hide();
+                        }
+                    }
+                );
+            });
+        </script>
+
+    </body>
+</html>
