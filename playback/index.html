@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Playback</title>
+        <meta charset='utf-8'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+        <script type="text/javascript" src="libs/jquery.js"></script>
+        <script type="text/javascript" src="sample-response_wav-2sec.js"></script>
+        <script type="text/javascript" src="sample-response_wav-10sec.js"></script>
+        <script type="text/javascript" src="sample-response_mp4.js"></script>
+        <script type="text/javascript" src="sample-response_opus.js"></script>
+        <style>
+            button {
+                margin-right: 5px;
+            }
+        </style>
+    </head>
+    <body style="padding:50px;">
+        <audio style="display:block;margin-bottom:15px" id="player" class="player" controls ></audio>
+        <label><input type="radio" value="wav" name="codec">Wav</label>
+        <label><input type="radio" value="mp4" name="codec">MP4</label>
+        <label><input type="radio" value="opus" name="codec">Opus</label><br><br>
+        <button id="applyDefault">APPLY SAMPLE</button><button id="applyDefaultWav" class="wav">APPLY SHORT SAMPLE</button><button id="applyDefaultWav2" class="wav">APPLY LONG SAMPLE</button><button id="applyInput">APPLY INPUT</button>
+        <label style="display:block;margin-top:20px;">Input base64 audio to playback</label>
+        <textarea id="base64" rows="10" style="width:90%;display:block;"></textarea>
+        <script type="text/javascript">
+        (function() {
+            var $source;
+            var codec;
+            var fileKey;
+            $('#applyDefault').on('click', function() {
+                play( window.sampleResponses['sampleResponses_'+codec] );
+            });
+            $('button.wav').on('click', function() {
+                var fileKey = 'sampleResponses_wav_' + ( $(this).attr('id') === 'applyDefaultWav' ? '2sec' : '10sec' );
+                play( window.sampleResponses[fileKey] );
+            });
+
+            $('#applyInput').on('click', function() {
+                play(  $('#base64').val() );
+            });
+
+            $('#base64').on('input', function(e) {
+                if ( $(this).val() === '' ) {
+                    $('#applyInput').attr('disabled', 'disabled');
+                } else {
+                    $('#applyInput').removeAttr('disabled');
+                }
+            });
+
+            // change handler for radio buttons
+            $('input[name="codec"]').on('change', function() {
+                codec = $('input[name="codec"]:checked').val();
+                if (codec === 'wav') {
+                    $('#applyDefault').hide();
+                    $('button.wav').show();
+                } else {
+                    $('#applyDefault').show();
+                    $('button.wav').hide();
+                }
+
+                // play call without param clears current source
+                play();
+
+            });
+            // start with the opus codec selected
+            $('#base64').trigger( 'input' );
+            $('input[value="wav"]').click();
+
+            function toggleButton( $btn, enabled ) {
+                enabled ?btn .removeAttr('disabled') : $btn.attr('disabled', 'disabled');
+            }
+
+            function play( base64 ) {
+                var hasFile = !!base64;
+                b64 = hasFile ? base64 : '';
+                var $audio = $('#player');
+                $audio[0].pause();
+                if ( $source ) {
+                    $source.off();
+                }
+                codec = $('input[name="codec"]:checked').val();
+                if ( hasFile ) {
+                    switch (codec) {
+                        case 'opus':
+                            $source = $('<source src="data:audio/ogg;base64,'+b64+'" type="audio/ogg" />');
+                            break;
+                        case 'mp4':
+                            $source = $('<source src="data:audio/x-m4a;base64,'+b64+'" type="audio/mp4" />');
+                            break;
+                        case 'wav':
+                            $source = $('<source src="data:audio/x-wav;base64,'+b64+'" type="audio/wav" />');
+                            break;
+                    }
+                    $source.on('error', function(e) {
+                        alert('Audio Playback Error, see console error');
+                        console.error('e:',e);
+                    });
+                    $audio.html( $source );
+                } else {
+                    $audio.html( '' );
+                }
+                $audio[0].load();
+            }
+        })();
+        </script>
+
+    </body>
+</html>
