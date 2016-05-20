@@ -9,6 +9,7 @@
         <script type="text/javascript" src="sample-response_wav-10sec.js"></script>
         <script type="text/javascript" src="sample-response_mp4.js"></script>
         <script type="text/javascript" src="sample-response_opus.js"></script>
+        <script type="text/javascript" src="sample-response_vorbis.js"></script>
         <style>
             button {
                 margin-right: 5px;
@@ -19,7 +20,8 @@
         <audio style="display:block;margin-bottom:15px" id="player" class="player" controls ></audio>
         <label><input type="radio" value="wav" name="codec">Wav</label>
         <label><input type="radio" value="mp4" name="codec">MP4</label>
-        <label><input type="radio" value="opus" name="codec">Opus</label><br><br>
+        <label><input type="radio" value="opus" name="codec">Opus</label>
+         <label><input type="radio" value="vorbis" name="codec">Vorbis</label><br><br>
         <button id="applyDefault">APPLY SAMPLE</button><button id="applyDefaultWav" class="wav">APPLY SHORT SAMPLE</button><button id="applyDefaultWav2" class="wav">APPLY LONG SAMPLE</button><button id="applyInput">APPLY INPUT</button>
         <label style="display:block;margin-top:20px;">Input base64 audio to playback</label>
         <textarea id="base64" rows="10" style="width:90%;display:block;"></textarea>
@@ -83,6 +85,7 @@
                 if ( hasFile ) {
                     switch (codec) {
                         case 'opus':
+                        case 'vorbis':
                             $source = $('<source src="data:audio/ogg;base64,'+b64+'" type="audio/ogg" />');
                             break;
                         case 'mp4':
