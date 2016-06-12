@@ -1,0 +1,35 @@
+/* ----------- grid ----------- */
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.grid {
+	width:900px;
+	margin:0 auto;
+}
+.grid:after, .top-bar:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+$padding: 20px;
+.grid-pad { padding: 0 0 0 20px }
+.grid-pad > .col:last-of-type { padding-right: 20px; }
+.col {
+	float: left;	
+	padding-right: 20px;
+	width: 33.3%;
+}
+.col:last-of-type, .col.no-pad { padding-right: 0; }
+.col:last-of-type, .col.no-pad { padding-right: 0; }
+.col-12-12 { width: 100%; }
+.col-9-12 { width: 75%; }
+.col-6-12 { width: 50%; }
+.col-4-12 { width: 33.3%; }
+.col-3-12 { width: 25%; }
+.col-off-9-12 { left: 75%; }
+.col-off-8-12 { left: 66.6%; }
+.col-off-6-12 { left: 50%; }
+.col-off-4-12 { left: 33.3%; }
+.col-off-3-12 { left: 25%; }

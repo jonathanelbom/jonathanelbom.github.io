@@ -1,0 +1,75 @@
+// settings - includes all $variables (colors, etc), @mixin, @function, and @media
+@import 'mixins';
+@import 'grid';
+
+$color-gray-dark:#2d3237;
+$color-gray-medium:#b0b9c2;
+$color-blue-dark:#0d61a6;
+$color-blue-medium:#3b79b1;
+$color-blue-light: #dcf0fb;
+$color-yellow: #fcb930;
+
+$color-text-light: #fff;
+
+$base-font-size: 14px;
+
+html, body {
+	font-family: 'Open Sans', sans-serif;
+	background-color: #fff;
+	height: 100%;
+	font-size: $base-font-size;
+}
+a {
+	text-decoration: none;
+	cursor: pointer;
+	color: $color-blue-medium;
+	&.selected {
+		cursor: default;
+	}
+	&:hover:not(.selected) {
+		text-decoration: underline;
+	}
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+.hidden {
+	visibility: hidden;
+}
+.btn {
+	$padding: 30px;
+	padding-left: $padding;
+	padding-right: $padding;
+	$dark: #ccc;
+	$med: #ddd;
+	$light: #eee;
+	@include border-radius( 2px );
+	border: 1px solid $dark;
+	@include gradient($light, $med);
+	&:hover {
+		@include gradient($med, $dark);
+	}
+}
+.btn-primary {
+	$dark: #204d74;
+	$med: #2e6da4;
+	$light: #337ab7;
+	color: #fff;
+	border: 1px solid $dark;
+	@include gradient($light, $med);
+	&:hover {
+		@include gradient($med, $dark);
+	}
+}
+.icon-for-text {
+	margin-right: 5px;
+}
+.scrolled {
+	@include box-shadow( 0 3px 0 0 rgba(0,0,0,0.1) );
+}
+
+@import 'landing';
+@import 'modal';
+@import 'modal-content1';
