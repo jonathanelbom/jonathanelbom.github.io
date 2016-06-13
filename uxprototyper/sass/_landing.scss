@@ -143,16 +143,7 @@ $card-section-bottom: 10px;
 	}
 }
 .main__content__card__image {
-	$h: 150px;
-	height: $h;
-	background-color: #eee;
-	text-align: center;
-	i {
-		color: #ddd;
-		font-size: $h * 0.8;
-		position:relative;
-		top: $h * 0.1;
-	}
+	@include placeholder-image();
 }
 .main__content__card__info {
 	> * {
@@ -196,6 +187,7 @@ $card-section-bottom: 10px;
 // -------------------------- main - folders (left panel) --------------------------
 .main__folders {
 	height: 100%;
+	padding-right:5px;
 }
 .main__folders__inner {
 	//background-color: $color-blue-light;
@@ -274,7 +266,6 @@ $card-section-bottom: 10px;
 .header__primary {
 	width: 100%;
 	background-color: $color-gray-dark;
-	color: $color-gray-medium;
 }
 .header__primary__content {
 	@include flex( flex, space-between, center);
@@ -304,6 +295,7 @@ $card-section-bottom: 10px;
 		margin-right: 0px;
 		margin-left: 5px;	
 	}
+	a { color: $color-gray-medium; }
 	$icon-padding-y: 4px;
 	.user-icon {
 		display: inline-block;

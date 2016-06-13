@@ -98,6 +98,10 @@
     -webkit-box-shadow: $shadow;
     box-shadow: $shadow;
 }
+@mixin text-shadow( $shadow ) {
+    -webkit-text-shadow: $shadow;
+    text-shadow: $shadow;
+}
 @mixin box-sizing( $box-sizing ) {
     -webkit-box-sizing: $box-sizing;
     box-sizing: $box-sizing;

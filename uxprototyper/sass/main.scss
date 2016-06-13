@@ -1,4 +1,5 @@
 // settings - includes all $variables (colors, etc), @mixin, @function, and @media
+@import "compass/css3";
 @import 'mixins';
 @import 'grid';
 
@@ -8,10 +9,34 @@ $color-blue-dark:#0d61a6;
 $color-blue-medium:#3b79b1;
 $color-blue-light: #dcf0fb;
 $color-yellow: #fcb930;
-
 $color-text-light: #fff;
-
 $base-font-size: 14px;
+$modal-header-footer-height: 50px;
+
+@mixin check-shadow() {
+	@include text-shadow(0px 0px 1px $color-blue-dark);
+}
+@mixin placeholder-image( $h:150px ) {
+	height: $h;
+	background-color: #eee;
+	text-align: center;
+	i {
+		color: #ddd;
+		font-size: $h * 0.8;
+		position:relative;
+		top: $h * 0.1;
+	}
+}
+
+// basic styles for mark-up overrides
+.flex-grow0 { flex-grow: 0 !important; }
+.flex-grow1 { flex-grow: 1 !important; }
+.flex-shrink0 { flex-shrink: 0 !important; }
+.flex-shrink1 { flex-shrink: 1 !important; }
+.width100 { width:100% !important; }
+.margin0 { margin: 0 !important; }
+.marginbot0 { margin-bottom: 0 !important; }
+.pad0 { padding: 0!important; }
 
 html, body {
 	font-family: 'Open Sans', sans-serif;
@@ -51,6 +76,13 @@ ul {
 	&:hover {
 		@include gradient($med, $dark);
 	}
+	&[disabled] {
+		cursor: default;
+		opacity: 0.5;
+		&:hover {
+			@include gradient($light, $med);
+		}
+	}
 }
 .btn-primary {
 	$dark: #204d74;
@@ -61,6 +93,9 @@ ul {
 	@include gradient($light, $med);
 	&:hover {
 		@include gradient($med, $dark);
+	}
+	&[disabled]:hover {
+		@include gradient($light, $med);
 	}
 }
 .icon-for-text {
@@ -73,3 +108,5 @@ ul {
 @import 'landing';
 @import 'modal';
 @import 'modal-content1';
+@import 'modal-content2';
+@import 'progress-indicator';

@@ -1,5 +1,4 @@
 /* ----------- modal ----------- */
-$header-footer-height: 50px;
 .modal {
 	overflow-x:hidden;
 	overflow-y:hidden;
@@ -49,25 +48,23 @@ $header-footer-height: 50px;
 	color: $color-text-light;
 }
 .modal__header {
-	min-height: 20px;
-  	padding: 15px;
+	padding: 12px 20px;
  	background-color: $color-blue-dark;
- 	font-weight:400;
-	color: $color-text-light;
-	height: $header-footer-height;
+ 	font-size:1.2em;
+ 	color: $color-text-light;
+	height: $modal-header-footer-height;
 	width: 100%;
+	position: relative;
+	z-index: 200;
 }
 .modal__body {
 	position: relative;
- 	padding: 15px 50px 45px 50px;
+ 	padding: 15px 50px 25px 50px;
  	overflow-y: auto;
- 	height: calc(100% - 2*#{$header-footer-height});
- 	h1 {
-		font-size: 1.3em;
-	}
+ 	height: calc(100% - 2*#{$modal-header-footer-height});
 }
 .modal__footer {
-	height: $header-footer-height;
+	height: $modal-header-footer-height;
 	width: 100%;
 	padding: 0 20px;
 	@include flex(flex, flex, center);

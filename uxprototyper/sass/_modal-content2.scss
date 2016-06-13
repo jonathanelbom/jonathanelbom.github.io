@@ -1,0 +1,88 @@
+$panel-header-height: 40px;
+$panel-margin-bottom: 15px;
+$panel-margin-right: 20px;
+$padding: 15px;
+
+.modal__body__content2 {
+	padding-top:10px;
+	h2 {
+		font-size: 1.1em;
+		font-weight: 600;
+		color: $color-blue-dark;
+	}
+}
+.modal__body__content2 > .col {
+	padding: 20px;
+}
+.modal__body__content2__image {
+	@include placeholder-image();
+}
+.modal__body__content2__panel {
+	&:not(:last-child) {
+		margin-bottom: 25px;
+	}
+}
+.modal__body__content2__panel__header {
+	border: 2px solid $color-blue-light;
+	border-bottom: 1px solid $color-blue-dark;
+	height: $panel-header-height;
+	padding-left: $padding;
+	@include flex(flex, flex-start, center);
+	> h2 { 
+		margin:0;
+		> i { margin-left: 6px;}
+	}
+}
+.modal__body__content2__panel__body {
+	border: 2px solid $color-blue-light;
+	background-color: $color-blue-light;
+	min-height: 30px;
+	padding: $padding;
+	input[type="text"] { 
+		color: #aaa;
+		font-style: italic;
+	}
+}
+.resource-type {
+	width: 50%;
+	[class*='prop__'] { width: 100% }
+}
+.source-type {
+	width: 50%;
+	[class*='prop__'] { width: 100% };
+}
+.file-info select { width: 150px; }
+.pub-year input[type="text"] { width: 80px; }
+.prim-auth .mi { width: 40px; }
+.page-range {
+	margin-bottom: 0 !important;
+	span { margin-right: 5px; }
+	input[type="text"] { 
+		width: 40px;
+		&:first-of-type { margin-right:5px; }
+	}
+}
+.prop {
+	@include flex(flex, flex-start, baseline, no-wrap);
+	flex-flow: column;
+	&:not(:last-child) {
+		margin-bottom: $panel-margin-bottom;
+		margin-right: $panel-margin-right;
+	}
+	&.flex-grow1 {
+		> .prop__values {
+			flex-grow: 1;
+			width: 100%;
+		}
+		.prop__value { flex-grow: 1; }
+	}
+}
+.prop-row { @include flex(flex, space-between, baseline, no-wrap); }
+.prop.inline { @include flex(inline-flex, flex-start, baseline, no-wrap); }
+.prop__label { font-weight: bold; }
+.prop__values { @include flex(flex, flex-start, baseline, no-wrap); }
+.prop__value {
+	&:not(:last-child) {
+		margin-right: $panel-margin-right;
+	}
+}

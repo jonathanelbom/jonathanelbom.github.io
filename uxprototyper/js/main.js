@@ -7,19 +7,23 @@
 	var colRight = document.querySelector( '.main__content__cards__right' );
 	var addResource = document.querySelector( '#addResource' );
 	var modal = document.querySelector( '.modal' );
+	var modalBody = document.querySelector( '.modal__body' );
 	var modalClose = document.querySelector( '.modal__close' );
 	var modalCancel = document.querySelector( '.modal__footer__cancel' );
 	var modalNext = document.querySelector( '.modal__footer__next' );
 	var modalBg = document.querySelector( '.modal__bg' );
 	var cloneCards = [ document.querySelector( '#clone_card_1' ), document.querySelector( '#clone_card_2' ), document.querySelector( '#clone_card_3' ) ];
+	var selectOpts = document.querySelectorAll('.modal__body__content1__select');
 	
+	selectOpts.forEach( function( elem, idx) {
+		elem.addEventListener('click', toggleResourceRights);	
+	});
 	// clone card for main page
 	for (var i=0; i<8; i++) {
 		var clone = cloneCards[i%3].cloneNode(true);
 		clone.id = '';
 		(i%2 === 0 ? colLeft : colRight).appendChild(clone);
 	}
-
 	// main action listener
 	addResource.addEventListener( 'click', function() {
 		toggleModal(true);
@@ -30,12 +34,30 @@
 	});
 	modalCancel.addEventListener( 'click', function() {
 		toggleModal(false);
-	})
+	});
+	//modalNext.addEventListener('click', nextContent);
+	function gotoStep(step) {
+	}
+	function toggleResourceRights(e) {
+		var target = e.target;
+		var s = target.querySelector('.select-text');
+		s.textContent = 'Selected';
+		target.setAttribute('aria-pressed', 'true');
+		selectOpts.forEach( function( elem, idx) {
+			if ( elem !== target ) {
+				elem.setAttribute('aria-pressed', 'false');
+				s = elem.querySelector('.select-text');
+				s.textContent = 'Select';
+			}
+			modalNext.removeAttribute('disabled');
+		});
+	}
 	function toggleModal(show) {
 		if (show) {
 			modal.style.display = 'block';
 			modalBg.style.display = 'block';
 		} else {
+			modalBody.scrollTop = 0;
 			modal.style.display = 'none';
 			modalBg.style.display = 'none';
 		}
@@ -43,7 +65,6 @@
 	function resize() {
 		folderList.style.height = (global.innerHeight - folderList.offsetTop) +'px';
 		cardPane.style.height = (global.innerHeight - cardPane.offsetTop) +'px';
-	
 	}
 	function scrolling(e) {
 		var elem = e.target;
