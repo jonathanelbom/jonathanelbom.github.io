@@ -818,9 +818,33 @@ header li {
   animation-timing-function: linear;
 }
 
-/* ----------- modal ----------- */
+/* ----------- modal transitions ----------- */
 /* line 2, ../sass/_modal.scss */
+.fade {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+/* line 6, ../sass/_modal.scss */
+.fade.in {
+  opacity: 1;
+}
+
+/* line 9, ../sass/_modal.scss */
+.modal.fade > .modal__dialog {
+  transform: scale(0.3) translate(0, -75%);
+  transition: transform 0.5s ease;
+}
+
+/* line 13, ../sass/_modal.scss */
+.modal.in > .modal__dialog {
+  transform: scale(1) translate(0, 0);
+}
+
+/* ----------- modal ----------- */
+/* line 17, ../sass/_modal.scss */
 .modal {
+  display: none;
   overflow-x: hidden;
   overflow-y: hidden;
   height: 100%;
@@ -832,12 +856,12 @@ header li {
   z-index: 1050;
 }
 
-/* line 13, ../sass/_modal.scss */
+/* line 30, ../sass/_modal.scss */
 .modal__close {
   float: right;
 }
 
-/* line 16, ../sass/_modal.scss */
+/* line 33, ../sass/_modal.scss */
 .modal__close.bottom {
   color: #333;
   border: 1px solid #B1B2B2;
@@ -846,14 +870,14 @@ header li {
   border-radius: 4px;
 }
 
-/* line 23, ../sass/_modal.scss */
+/* line 40, ../sass/_modal.scss */
 .modal__footer:after {
   content: "";
   display: table;
   clear: both;
 }
 
-/* line 28, ../sass/_modal.scss */
+/* line 45, ../sass/_modal.scss */
 .modal__dialog {
   display: flex;
   display: -webkit-flex;
@@ -872,7 +896,7 @@ header li {
   margin: 0 auto;
   background-color: #fff;
 }
-/* line 37, ../sass/_modal.scss */
+/* line 54, ../sass/_modal.scss */
 .modal__dialog > * {
   flex-grow: 0;
   -webkit-flex-grow: 0;
@@ -882,13 +906,13 @@ header li {
   -webkit-flex-basis: auto;
 }
 
-/* line 46, ../sass/_modal.scss */
+/* line 60, ../sass/_modal.scss */
 .modal a {
   text-decoration: none;
   color: #fff;
 }
 
-/* line 50, ../sass/_modal.scss */
+/* line 64, ../sass/_modal.scss */
 .modal__header {
   padding: 12px 20px;
   background-color: #0d61a6;
@@ -900,7 +924,7 @@ header li {
   z-index: 200;
 }
 
-/* line 60, ../sass/_modal.scss */
+/* line 74, ../sass/_modal.scss */
 .modal__body {
   position: relative;
   padding: 15px 50px 25px 50px;
@@ -908,7 +932,7 @@ header li {
   height: calc(100% - 2*50px);
 }
 
-/* line 66, ../sass/_modal.scss */
+/* line 80, ../sass/_modal.scss */
 .modal__footer {
   height: 50px;
   width: 100%;
@@ -922,7 +946,7 @@ header li {
   background-color: #fff;
   border-top: 1px solid #ccc;
 }
-/* line 73, ../sass/_modal.scss */
+/* line 87, ../sass/_modal.scss */
 .modal__footer > :first-child {
   flex-grow: 1;
   -webkit-flex-grow: 1;
@@ -931,21 +955,21 @@ header li {
   flex-basis: auto;
   -webkit-flex-basis: auto;
 }
-/* line 76, ../sass/_modal.scss */
+/* line 90, ../sass/_modal.scss */
 .modal__footer > :not(:last-child) {
   margin-right: 10px;
 }
 
-/* line 80, ../sass/_modal.scss */
+/* line 94, ../sass/_modal.scss */
 .modal__bg {
+  display: none;
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
   z-index: 1040;
-  background-color: #000;
-  opacity: 0.75;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 @keyframes scale {

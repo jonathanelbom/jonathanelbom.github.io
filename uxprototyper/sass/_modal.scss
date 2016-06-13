@@ -1,5 +1,22 @@
+/* ----------- modal transitions ----------- */
+.fade {
+	opacity: 0;
+	transition: opacity 0.25s ease;
+}
+.fade.in {
+	opacity: 1;
+}
+.modal.fade > .modal__dialog {
+	transform: scale(0.3) translate(0, -75%);
+	transition: transform 0.5s ease;
+}
+.modal.in > .modal__dialog {
+	transform: scale(1) translate(0, 0);
+}
 /* ----------- modal ----------- */
 .modal {
+	display:none;
+	// pointer-events: none;
 	overflow-x:hidden;
 	overflow-y:hidden;
 	height: 100%;
@@ -37,9 +54,6 @@
 	> * {
 		@include flex-size(0, 0);
 	}
-	// width:70%;
-	// min-width:500px;
-	// max-width:800px;
 	margin:0 auto;
 	background-color: #fff;
 }
@@ -78,12 +92,12 @@
  	}
 }
 .modal__bg {
+	display: none;
 	position:fixed;
 	top:0;
 	right:0;
 	bottom:0;
 	left:0;
 	z-index:1040;
-	background-color:#000;
-	opacity: 0.75;
+	background-color: rgba(0,0,0,0.75);
 }

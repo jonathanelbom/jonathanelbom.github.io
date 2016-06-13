@@ -1,5 +1,5 @@
 <!doctype html>
-<html>	
+<html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>User Experience Prototyper - Jonathan Elbom</title>
@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="css/main.css"/>
 	</head>
 	<body>
-		
+
 		<!-- header -->
 		<header>
 			<div class="header__primary">
@@ -50,20 +50,20 @@
 				</div>
 			</div>
 		</header>
-		
+
 		<!-- main area -->
 		<div class="main grid">
-			
+
 			<!-- left panel: folders -->
 			<section class="main__folders col col-3-12">
 				<div class="main__folders__inner">
-					
+
 					<!-- folders controls -->
 					<div class="main__folders__inner__controls">
 						<a href="#"><i class="fa fa-plus icon-for-text" aria-hidden="true"></i>Create a Folder</a>
 						<a href="#">Edit Folders</a>
 					</div>
-					
+
 					<!-- folders -->
 					<ul class="main__folders__inner__content">
 						<li class="main__folders__inner__content__item--primary">
@@ -133,10 +133,10 @@
 					</ul>
 				</div>
 			</section>
-			
+
 			<!-- right panel: content -->
 			<section class="main__content col col-9-12 no-pad">
-				
+
 				<!-- cards controls -->
 				<div class="main__content__controls">
 					<div class="main__content__controls__row">
@@ -162,7 +162,7 @@
 						<div class="main__content__controls__view">
 							<i class="fa fa-th-large" aria-hidden="true"></i><i class="fa fa-th-list selected" aria-hidden="true"></i>
 						</div>
-					</div>		
+					</div>
 				</div>
 
 				<!-- cards -->
@@ -171,7 +171,7 @@
 					</div>
 					<div class="main__content__cards__right col col-6-12">
 					</div>
-					
+
 					<!-- source cards to clone -->
 					<div id="clone_card_1" class="main__content__card">
 						<div class="main__content__card__inner">
@@ -283,163 +283,164 @@
 		</div>
 
 		<!-- modal -->
-		<div class="modal" style="display:none">
-				<div class="modal__dialog">
-					<div class="modal__header">
-						Add a Resource
-						<a href="#" class="modal__close"><i class="fa fa-close"></i></a>
-						<div class="modal__body__steps">
-							<div class="modal__body__steps__bg"></div>
-							<div class="modal__body__step-indicator">
-								<span class="modal__body__step-indicator__step completed" href="#">Resource Information</span>
-								<span class="modal__body__step-indicator__step" href="#">Your information</span>
-								<span class="modal__body__step-indicator__step" href="#">Copyright Matching</span>
-								<span class="modal__body__step-indicator__step" href="#">Review &amp; Confirm</span>
-							</div>
+		<div class="modal fade">
+			<div class="modal__dialog">
+				<div class="modal__header">
+					Add a Resource
+					<a href="#" class="modal__close"><i class="fa fa-close"></i></a>
+					<div class="modal__body__steps">
+						<div class="modal__body__steps__bg"></div>
+						<div class="modal__body__step-indicator">
+							<span class="modal__body__step-indicator__step completed" href="#">Resource Information</span>
+							<span class="modal__body__step-indicator__step" href="#">Your information</span>
+							<span class="modal__body__step-indicator__step" href="#">Copyright Matching</span>
+							<span class="modal__body__step-indicator__step" href="#">Review &amp; Confirm</span>
 						</div>
-					</div>
-					<div class="modal__body grid">				
-						<div style="display:none" class="modal__body__content1">
-							<div class="modal__body__content1__header col col-12-12">
-								<h1>About Adding Resources to your Content</h1>In order to use uploaded content, you must have all the necessary rights to do so... If you do not have these rights, we can help you acquire them. Please note that the certain Term of Service provisions apply to your uploaded materials. 
-							</div>
-							<div class="modal__body__content1__subheader col col-12-12">
-								<h2>Do you have the content rights to this resource?</h2> 
-							</div>
-							<div class="col col-6-12">
-								<div id="haverights" class="modal__body__content1__select" role="button" aria-pressed="false">
-									<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-									<span>Yes I have the necessary rights to upload and use the content.</span>
-									<div>
-										<i class="fa fa-check" aria-hidden="true"></i><span class='select-text'>Select</span>
-									</div>
-								</div>
-								<p><em>In order to use any uploaded material in your Digital Collection, <strong>YOU MUST HAVE ALL RIGHTS NECESSARY</strong> (meaning that you either have complete control of the copyrighted material OR you can demonstrate that you have been granted all necessay rights to use the material form the party that controls the copyright).</p>
-								<p>Please refer to the <a href="#">Terms of Use</a> and the <a href="#">U.S Copyright Office FAQ</a> for additional information</em></p>
-							</div>
-							<div class="col col-6-12">
-								<div id="needrights" class="modal__body__content1__select" role="button" aria-pressed="false">
-									<i class="fa fa-clock-o" aria-hidden="true"></i>
-									<span>No, I need assistance in obtaining the necessary rights.</span>
-									<div>
-										<i class="fa fa-check" aria-hidden="true"></i><span class='select-text'>Select</span>
-									</div>
-								</div>
-								<p><em>If you do not have all the necessary rights to upload and use this material in the Service, you will need to get such rights before using the material in your Digital Collections. If requested by you, we can attempt to obtain the necessary rights for you. Depending on the resource, there may be fees charged by the rights-holder to tuse it, which will be passed on to your students who purchase the Digital Collection(s). It <strong>may take up to 6 weeks</strong> or more in ordr to obtain these rights, if they are available. Clicking <strong>Next</strong> and inputting the necessar information on the next screen will allow us to better estimate these costs and lead times for you, but you are not obligatd to use the resource in any Digital Collections</em></p>
-							</div>
-						</div>
-						<div  class="modal__body__content2">
-							<aside class="col col-4-12">
-								<h2>Source Information Details</h2>
-								<div class="modal__body__content2__image">
-									<i class="fa fa-file-image-o" aria-hidden="true"></i>
-								</div>
-								<p>Lucas ipsum dolor sit amet moff kashyyyk palpatine wicket coruscant grievous solo fett tatooine alderaan. Maul yoda binks sith amidala grievous yoda maul. Skywalker mandalorians leia palpatine wookiee anakin.</p>
-							</aside>
-							<section class="col col-8-12">
-								<div class="modal__body__content2__panel">
-									<div class="modal__body__content2__panel__header"><h2>About your Resource<i class="fa fa-question-circle" aria-hidden="true"></i></h2></div>
-									<div class="modal__body__content2__panel__body">
-										<div class="prop resource-type">
-											<div class="prop__label">Resource Type</div>
-											<div class="prop__values">
-												<select class="prop__value">
-													<option selected disabled>Select one...</option>
-													<option>Green</option>
-													<option>Blue</option>
-													<option>Red</option>
-												</select>
-											</div>
-										</div>
-										<div class="prop file-info width100">
-											<div class="prop__label width100">File Information</div>
-											<div class="prop__values width100">
-												<select class="prop__value">
-													<option selected>URL</option>
-													<option>Green</option>
-													<option>Blue</option>
-													<option>Red</option>
-												</select>
-												<input type="text" class="prop__value flex-grow1" value="Enter URL">
-												</input>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="modal__body__content2__panel">
-									<div class="modal__body__content2__panel__header"><h2>Tell us Where you Found this Resource<i class="fa fa-question-circle" aria-hidden="true"></i></h2></div>
-									<div class="modal__body__content2__panel__body">
-										<div class="prop source-type">
-											<div class="prop__label">Source Type</div>
-											<div class="prop__values">
-												<select class="prop__value">
-													<option selected disabled>Book</option>
-													<option>Green</option>
-													<option>Blue</option>
-													<option>Red</option>
-												</select>
-											</div>
-										</div>
-										<div class="prop-row">
-											<div class="prop book-title flex-grow1">
-												<div class="prop__label">Book Title</div>
-												<div class="prop__values">
-													<input type="text" class="prop__value" value="">
-													</input>
-												</div>
-											</div>
-											<div class="prop pub-year">
-												<div class="prop__label">Publication Year</div>
-												<div class="prop__values">
-													<input type="text" class="prop__value" value="">
-													</input>
-												</div>
-											</div>
-										</div>
-										<div class="prop prim-auth flex-grow1">
-											<div class="prop__label">Primary Author</div>
-											<div class="prop__values">
-												<input type="text" class="prop__value fname" value="First">
-												</input>
-												<input type="text" class="prop__value mi flex-grow0" value="M.I.">
-												</input>
-												<input type="text" class="prop__value lname" value="Last">
-												</input>
-											</div>
-										</div>
-										<div class="prop-row">
-											<div class="prop page-range">
-												<div class="prop__label">Page Number Range</div>
-												<div class="prop__values">
-													<input type="text" class="prop__value" value="5">
-													</input>
-													<span>to</span>
-													<input type="text" class="prop__value" value="5">
-													</input>
-												</div>
-											</div>
-											<div class="prop isbn flex-grow1">
-												<div class="prop__label">ISBN</div>
-												<div class="prop__values">
-													<input type="text" class="prop__value" value="">
-													</input>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</section>
-						</div>
-					</div>
-					<div class="modal__footer">
-						<div class="hidden"><button class="btn modal__footer__back">Back</button></div>
-						<button class="btn modal__footer__cancel">Cancel</button>
-						<button class="btn btn-primary modal__footer__next" disabled >Next</button>
 					</div>
 				</div>
-			</div>	
+				<div class="modal__body grid">
+					<div style="display:none" class="modal__body__content1">
+						<div class="modal__body__content1__header col col-12-12">
+							<h1>About Adding Resources to your Content</h1>In order to use uploaded content, you must have all the necessary rights to do so... If you do not have these rights, we can help you acquire them. Please note that the certain Term of Service provisions apply to your uploaded materials.
+						</div>
+						<div class="modal__body__content1__subheader col col-12-12">
+							<h2>Do you have the content rights to this resource?</h2>
+						</div>
+						<div class="col col-6-12">
+							<div id="haverights" class="modal__body__content1__select" role="button" aria-pressed="false">
+								<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+								<span>Yes I have the necessary rights to upload and use the content.</span>
+								<div>
+									<i class="fa fa-check" aria-hidden="true"></i><span class='select-text'>Select</span>
+								</div>
+							</div>
+							<p><em>In order to use any uploaded material in your Digital Collection, <strong>YOU MUST HAVE ALL RIGHTS NECESSARY</strong> (meaning that you either have complete control of the copyrighted material OR you can demonstrate that you have been granted all necessay rights to use the material form the party that controls the copyright).</p>
+							<p>Please refer to the <a href="#">Terms of Use</a> and the <a href="#">U.S Copyright Office FAQ</a> for additional information</em></p>
+						</div>
+						<div class="col col-6-12">
+							<div id="needrights" class="modal__body__content1__select" role="button" aria-pressed="false">
+								<i class="fa fa-clock-o" aria-hidden="true"></i>
+								<span>No, I need assistance in obtaining the necessary rights.</span>
+								<div>
+									<i class="fa fa-check" aria-hidden="true"></i><span class='select-text'>Select</span>
+								</div>
+							</div>
+							<p><em>If you do not have all the necessary rights to upload and use this material in the Service, you will need to get such rights before using the material in your Digital Collections. If requested by you, we can attempt to obtain the necessary rights for you. Depending on the resource, there may be fees charged by the rights-holder to tuse it, which will be passed on to your students who purchase the Digital Collection(s). It <strong>may take up to 6 weeks</strong> or more in ordr to obtain these rights, if they are available. Clicking <strong>Next</strong> and inputting the necessar information on the next screen will allow us to better estimate these costs and lead times for you, but you are not obligatd to use the resource in any Digital Collections</em></p>
+						</div>
+					</div>
+					<div  class="modal__body__content2">
+						<aside class="col col-4-12">
+							<h2>Source Information Details</h2>
+							<div class="modal__body__content2__image">
+								<i class="fa fa-file-image-o" aria-hidden="true"></i>
+							</div>
+							<p>Lucas ipsum dolor sit amet moff kashyyyk palpatine wicket coruscant grievous solo fett tatooine alderaan. Maul yoda binks sith amidala grievous yoda maul. Skywalker mandalorians leia palpatine wookiee anakin.</p>
+						</aside>
+						<section class="col col-8-12">
+							<div class="modal__body__content2__panel">
+								<div class="modal__body__content2__panel__header"><h2>About your Resource<i class="fa fa-question-circle" aria-hidden="true"></i></h2></div>
+								<div class="modal__body__content2__panel__body">
+									<div class="prop resource-type">
+										<div class="prop__label">Resource Type</div>
+										<div class="prop__values">
+											<select class="prop__value">
+												<option selected disabled>Select one...</option>
+												<option>Green</option>
+												<option>Blue</option>
+												<option>Red</option>
+											</select>
+										</div>
+									</div>
+									<div class="prop file-info width100">
+										<div class="prop__label width100">File Information</div>
+										<div class="prop__values width100">
+											<select class="prop__value">
+												<option selected>URL</option>
+												<option>Green</option>
+												<option>Blue</option>
+												<option>Red</option>
+											</select>
+											<input type="text" class="prop__value flex-grow1" value="Enter URL">
+											</input>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="modal__body__content2__panel">
+								<div class="modal__body__content2__panel__header"><h2>Tell us Where you Found this Resource<i class="fa fa-question-circle" aria-hidden="true"></i></h2></div>
+								<div class="modal__body__content2__panel__body">
+									<div class="prop source-type">
+										<div class="prop__label">Source Type</div>
+										<div class="prop__values">
+											<select class="prop__value">
+												<option selected disabled>Book</option>
+												<option>Green</option>
+												<option>Blue</option>
+												<option>Red</option>
+											</select>
+										</div>
+									</div>
+									<div class="prop-row">
+										<div class="prop book-title flex-grow1">
+											<div class="prop__label">Book Title</div>
+											<div class="prop__values">
+												<input type="text" class="prop__value" value="">
+												</input>
+											</div>
+										</div>
+										<div class="prop pub-year">
+											<div class="prop__label">Publication Year</div>
+											<div class="prop__values">
+												<input type="text" class="prop__value" value="">
+												</input>
+											</div>
+										</div>
+									</div>
+									<div class="prop prim-auth flex-grow1">
+										<div class="prop__label">Primary Author</div>
+										<div class="prop__values">
+											<input type="text" class="prop__value fname" value="First">
+											</input>
+											<input type="text" class="prop__value mi flex-grow0" value="M.I.">
+											</input>
+											<input type="text" class="prop__value lname" value="Last">
+											</input>
+										</div>
+									</div>
+									<div class="prop-row">
+										<div class="prop page-range">
+											<div class="prop__label">Page Number Range</div>
+											<div class="prop__values">
+												<input type="text" class="prop__value" value="5">
+												</input>
+												<span>to</span>
+												<input type="text" class="prop__value" value="5">
+												</input>
+											</div>
+										</div>
+										<div class="prop isbn flex-grow1">
+											<div class="prop__label">ISBN</div>
+											<div class="prop__values">
+												<input type="text" class="prop__value" value="">
+												</input>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+				<div class="modal__footer">
+					<div class="hidden">
+						<button class="btn modal__footer__back">Back</button>
+					</div>
+					<button class="btn modal__footer__cancel">Cancel</button>
+					<button class="btn btn-primary modal__footer__next" disabled >Next</button>
+				</div>
+			</div>
 		</div>
-		<div class="modal__bg" style="display:none"></div>
+		<div class="modal__bg fade"></div>
 
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>

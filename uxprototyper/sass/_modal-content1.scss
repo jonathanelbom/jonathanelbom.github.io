@@ -1,10 +1,6 @@
 @keyframes scale {
-  from {
-    transform: scale(1);
-  }
-  to {
-    transform: scale(1.5);
-  }
+  from { transform: scale(1); }
+  to { transform: scale(1.5); }
 }
 
 [class*='modal__body__'] {
@@ -36,10 +32,10 @@
 	* { pointer-events: none; }
 	> i { font-size: 5em; }
 	> span { font-size: 1.3em; }
-	> div { 
+	> div {
 		font-size: 1.3em;
 		@include flex(flex, center, center);
-		> i { 
+		> i {
 			color: #fff;
 			@include check-shadow();
 			font-size: 2.5em;

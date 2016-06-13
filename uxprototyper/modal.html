@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title></title>
+		<script   src="https://code.jquery.com/jquery-1.12.4.min.js"   integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="   crossorigin="anonymous"></script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet"crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.js" crossorigin="anonymous"></script>
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<style>
+	        html, body {
+	        	height:100%;
+	        	background-color: #eee;
+	        }
+	        .modal__jme {
+				pointer-events: none;
+				overflow:hidden;
+				height: 100%;
+				position:fixed;
+				display: none;
+				top:0;
+				right:0;
+				bottom:0;
+				left:0;
+				z-index:1050;
+			}
+			.trans {
+				opacity: 0;
+				transition: opacity 1s;
+			}
+			.trans.inn {
+				opacity: 1;
+			}
+			.modal__jme.inn {
+				background-color: #ff0000;
+			}
+			.modal__jme.inn > .modal__dialog {
+				transform: scale(1);
+			}
+			.modal__jme.trans > .modal__dialog {
+				transition: transform 1s;
+			}
+			.modal__dialog {
+				/*display: flex
+				justify-content: flex-start;
+				align-items: flex-start;*/
+				box-shadow: 0 4px 12px 2px rgba(0,0,0,0.3);
+				flex-flow: column;
+				height: 70%;
+				top: 15%;
+				position: relative;
+				z-index:1050;
+				width: 500px;
+				margin:0 auto;
+				background-color: #fff;
+				transform: scale(0.3);
+				/*> * { @include flex-size(0, 0); }*/
+			}
+	    </style>
+	</head>
+	<body>
+		<button id="jme">Launch JME Modal</button>
+		<button id="bootstrap">Launch Bootstrap Modal</button>
+		<div class="modal__jme trans">
+			<div class="modal__dialog">
+				<div class="modal__header">Modal Header</div>
+				<div class="modal__body">Modal Body</div>
+				<div class="modal__footer">Modal Footer</div>
+			</div>
+		</div>
+		<div class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">Bootstrap Modal Header</div>
+					<div class="modal-body">Bootstrap Modal Body</div>
+					<div class="modal-footer">Bootstrap Modal Footer</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var jmeModalOpen = false;
+			var $m = $('.modal__jme');
+			var $md = $('.modal__jme > .modal__dialog');
+			console.log( '$m:',$m,', $md:',$md);
+			$('.modal').modal({show:false});
+			$('#bootstrap').on('click', function() {
+				$('.modal').modal('show');
+			});
+			$('#jme').on('click', function() {
+				toggleJMEModal()
+			});
+
+			function toggleJMEModal() {
+				if ( jmeModalOpen ) {
+					//$m.css('display', 'block');
+					//$m.removeClass('inn');
+				} else {
+					$m.css('display', 'block');
+					setTimeout( function() {
+						$m.addClass('inn')
+					}, 0);
+				}
+				jmeModalOpen = !jmeModalOpen;
+			}
+		</script>
+	</body>
+</html>

@@ -7,6 +7,7 @@
 	var colRight = document.querySelector( '.main__content__cards__right' );
 	var addResource = document.querySelector( '#addResource' );
 	var modal = document.querySelector( '.modal' );
+	var modalDialog = document.querySelector( '.modal__dialog' );
 	var modalBody = document.querySelector( '.modal__body' );
 	var modalClose = document.querySelector( '.modal__close' );
 	var modalCancel = document.querySelector( '.modal__footer__cancel' );
@@ -14,12 +15,15 @@
 	var modalBg = document.querySelector( '.modal__bg' );
 	var cloneCards = [ document.querySelector( '#clone_card_1' ), document.querySelector( '#clone_card_2' ), document.querySelector( '#clone_card_3' ) ];
 	var selectOpts = document.querySelectorAll('.modal__body__content1__select');
-	
-	selectOpts.forEach( function( elem, idx) {
-		elem.addEventListener('click', toggleResourceRights);	
-	});
+
+	var modalOpen = false;
+	var i;
+	for (i=0; i<selectOpts.length; i++) {
+		var elem = selectOpts[i];
+		elem.addEventListener('click', toggleResourceRights);
+	}
 	// clone card for main page
-	for (var i=0; i<8; i++) {
+	for (i=0; i<8; i++) {
 		var clone = cloneCards[i%3].cloneNode(true);
 		clone.id = '';
 		(i%2 === 0 ? colLeft : colRight).appendChild(clone);
@@ -52,14 +56,24 @@
 			modalNext.removeAttribute('disabled');
 		});
 	}
+	modalDialog.addEventListener( 'transitionend', function(e) {
+		modalOpen = !modalOpen;
+		if ( !modalOpen ) {
+			modal.style.display = 'none';
+			modalBg.style.display = 'none';
+		}
+	});
 	function toggleModal(show) {
 		if (show) {
 			modal.style.display = 'block';
 			modalBg.style.display = 'block';
+			setTimeout( function() {
+				modal.classList.add('in');
+				modalBg.classList.add('in');
+			}, 0);
 		} else {
-			modalBody.scrollTop = 0;
-			modal.style.display = 'none';
-			modalBg.style.display = 'none';
+			modal.classList.remove('in');
+			modalBg.classList.remove('in');
 		}
 	}
 	function resize() {
@@ -86,7 +100,7 @@
             if (callNow) func.apply(context, args);
         };
     }
-	
+
 	// resize / scroll handlers
 	var delay = 250;
 	global.onresize = debounce( resize, delay );
@@ -94,6 +108,8 @@
 	cardPane.onscroll = scrolling;
 
 	global.setTimeout(resize, 250);
+	global.setTimeout( function() {
+		toggleModal(true);
+	}, 1000);
 
-	toggleModal(true);
 })( window )
