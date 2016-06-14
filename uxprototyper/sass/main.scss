@@ -12,6 +12,7 @@ $color-yellow: #fcb930;
 $color-text-light: #fff;
 $base-font-size: 14px;
 $modal-header-footer-height: 50px;
+$progress-indicator-height: 30px;
 
 @mixin check-shadow() {
 	@include text-shadow(0px 0px 1px $color-blue-dark);
@@ -38,6 +39,7 @@ $modal-header-footer-height: 50px;
 .marginbot0 { margin-bottom: 0 !important; }
 .pad0 { padding: 0!important; }
 
+
 html, body {
 	font-family: 'Open Sans', sans-serif;
 	background-color: #fff;
@@ -48,21 +50,15 @@ a {
 	text-decoration: none;
 	cursor: pointer;
 	color: $color-blue-medium;
-	&.selected {
-		cursor: default;
-	}
-	&:hover:not(.selected) {
-		text-decoration: underline;
-	}
+	&.selected { cursor: default; }
+	&:hover:not(.selected) { text-decoration: underline; }
 }
 ul {
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
 }
-.hidden {
-	visibility: hidden;
-}
+.hidden { visibility: hidden; }
 .btn {
 	$padding: 30px;
 	padding-left: $padding;
@@ -73,15 +69,11 @@ ul {
 	@include border-radius( 2px );
 	border: 1px solid $dark;
 	@include gradient($light, $med);
-	&:hover {
-		@include gradient($med, $dark);
-	}
+	&:hover { @include gradient($med, $dark); }
 	&[disabled] {
 		cursor: default;
 		opacity: 0.5;
-		&:hover {
-			@include gradient($light, $med);
-		}
+		&:hover { @include gradient($light, $med); }
 	}
 }
 .btn-primary {
@@ -91,22 +83,62 @@ ul {
 	color: #fff;
 	border: 1px solid $dark;
 	@include gradient($light, $med);
-	&:hover {
-		@include gradient($med, $dark);
-	}
-	&[disabled]:hover {
-		@include gradient($light, $med);
+	&:hover { @include gradient($med, $dark); }
+	&[disabled]:hover { @include gradient($light, $med); }
+}
+.icon-for-text { margin-right: 5px; }
+.scrolled { @include box-shadow( 0 3px 0 0 rgba(0,0,0,0.15) ); }
+.scrolled-inverse { @include box-shadow( 0 -3px 0 0 rgba(0,0,0,0.06) ); }
+.circle {
+	$side: 18px;
+	height: $side;
+	width: $side;
+	display: inline-block;
+	@include border-radius($side);
+	border: 1px solid #777;
+	i {
+		top: -2px;
+	    left: 2px;
+	    font-size: 0.875em;
+	    position: relative;
 	}
 }
-.icon-for-text {
-	margin-right: 5px;
-}
-.scrolled {
-	@include box-shadow( 0 3px 0 0 rgba(0,0,0,0.1) );
+.inverse > .circle {
+	border-color: #fff;
 }
 
+.font-size-control {
+	float:right;
+	font-size: 0.875em;
+	i {
+		font-size: 1.2em;
+	}
+}
+
+// modal content steps
+.modal__body__content1 { display: block; }
+.modal__body__content2 { display: none; }
+
+@import 'header';
 @import 'landing';
 @import 'modal';
 @import 'modal-content1';
 @import 'modal-content2';
 @import 'progress-indicator';
+
+@media screen and (max-width: 767px) {
+  body, .modal {
+  	padding-left: 15px;
+  	padding-right: 15px;
+  }
+  .grid, .modal__dialog {width: 100%; }
+}
+@media screen and (min-width: 768px) {
+  .grid, .modal__dialog { width: 750px; }
+}
+@media screen and (min-width: 992px) {
+  .grid, .modal__dialog { width: 970px; }
+}
+@media screen and (min-width: 1200px) {
+  .grid, .modal__dialog { width: 1170px; }
+}

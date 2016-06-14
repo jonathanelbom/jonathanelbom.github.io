@@ -35,7 +35,11 @@
 							<li><a href="#">Curated Collection</a></li>
 						</ul>
 					</nav>
+					<div class="font-size-control">
+						font size:<i id="fontPlus" class="fa fa-plus-circle" aria-hidden="true"></i><i id="fontMinus" class="fa fa-minus-circle" aria-hidden="true"></i>
+					</div>
 				</div>
+
 			</div>
 			<div class="header__tertiary">
 				<div class="header__tertiary__content grid">
@@ -283,7 +287,7 @@
 		</div>
 
 		<!-- modal -->
-		<div class="modal fade">
+		<div class="modal trans">
 			<div class="modal__dialog">
 				<div class="modal__header">
 					Add a Resource
@@ -299,7 +303,7 @@
 					</div>
 				</div>
 				<div class="modal__body grid">
-					<div style="display:none" class="modal__body__content1">
+					<div class="modal__body__content1">
 						<div class="modal__body__content1__header col col-12-12">
 							<h1>About Adding Resources to your Content</h1>In order to use uploaded content, you must have all the necessary rights to do so... If you do not have these rights, we can help you acquire them. Please note that the certain Term of Service provisions apply to your uploaded materials.
 						</div>
@@ -432,7 +436,7 @@
 					</div>
 				</div>
 				<div class="modal__footer">
-					<div class="hidden">
+					<div class="modal__footer__back__wrap hidden">
 						<button class="btn modal__footer__back">Back</button>
 					</div>
 					<button class="btn modal__footer__cancel">Cancel</button>
@@ -440,7 +444,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal__bg fade"></div>
+		<div class="modal__bg trans"></div>
 
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>

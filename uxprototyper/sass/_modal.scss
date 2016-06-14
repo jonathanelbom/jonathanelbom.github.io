@@ -1,24 +1,23 @@
 /* ----------- modal transitions ----------- */
-.fade {
+.trans {
 	opacity: 0;
 	transition: opacity 0.25s ease;
 }
-.fade.in {
+.trans.shown {
 	opacity: 1;
 }
-.modal.fade > .modal__dialog {
+.modal.trans > .modal__dialog {
 	transform: scale(0.3) translate(0, -75%);
 	transition: transform 0.5s ease;
 }
-.modal.in > .modal__dialog {
+.modal.shown > .modal__dialog {
 	transform: scale(1) translate(0, 0);
 }
 /* ----------- modal ----------- */
 .modal {
-	display:none;
 	// pointer-events: none;
-	overflow-x:hidden;
-	overflow-y:hidden;
+	display:none;
+	overflow:hidden;
 	height: 100%;
 	position:fixed;
 	top:0;
@@ -43,19 +42,25 @@
   	clear: both;
 }
 .modal__dialog {
-	@include flex(flex, flex-start, flex-start);
+	// @include flex(flex, flex-start, flex-start);
+	// flex-flow: column;
+	// > * { @include flex-size(0, 0); }
 	@include box-shadow (0 4px 12px 2px rgba(0,0,0,0.3));
-	flex-flow: column;
 	height: 90%;
 	top: 5%;
 	position: relative;
 	z-index:1050;
 	width: 900px;
-	> * {
-		@include flex-size(0, 0);
-	}
 	margin:0 auto;
 	background-color: #fff;
+	&.progress {
+		.modal__header {
+			height: $modal-header-footer-height + $progress-indicator-height;
+		}
+		.modal__body {
+		 	height: calc(100% - (2 * #{$modal-header-footer-height} + #{$progress-indicator-height}) );
+		}	
+	}
 }
 .modal a {
 	text-decoration: none;
@@ -81,6 +86,8 @@
 	height: $modal-header-footer-height;
 	width: 100%;
 	padding: 0 20px;
+	position: relative;
+	z-index: 100;
 	@include flex(flex, flex, center);
 	background-color: #fff;
  	border-top: 1px solid #ccc;

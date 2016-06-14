@@ -1,0 +1,126 @@
+header { 
+	border-bottom: 2px solid $color-blue-dark;
+	li { display: inline-block; }
+}
+
+// -------------------------- header primary --------------------------
+.header__primary {
+	width: 100%;
+	background-color: $color-gray-dark;
+}
+.header__primary__content {
+	@include flex( flex, space-between, center);
+}
+.header__primary__content__logo {
+	color: $color-text-light;
+	letter-spacing: 2px;
+	flex-grow:1;
+	font-size: 2em;
+	vertical-align:center;
+}
+.header__primary__content__nav {
+	> ul {
+		display: flex;
+		align-items: center;
+	}
+	li {
+		font-size: 0.875em;
+		&:not(:last-child) {
+			margin-right: 20px;
+		}
+		display: flex;
+		align-items: center;
+		cursor: pointer;
+	}
+	.fa-chevron-down {
+		margin-right: 0px;
+		margin-left: 5px;	
+	}
+	a { color: $color-gray-medium; }
+	$icon-padding-y: 4px;
+	.user-icon {
+		display: inline-block;
+		padding: $icon-padding-y 8px;
+		background-color: $color-gray-medium;
+		margin-right: 10px;
+		cursor: default;
+	}
+	.fa-user {
+		position: relative;
+		top: $icon-padding-y - 1px;
+		font-size: 3em;
+		color: #606060;
+	}
+}
+// -------------------------- header secondary --------------------------
+.header__secondary {
+	width: 100%;
+	background-color: $color-blue-medium;
+	color: $color-text-light;
+}
+.header__secondary__content { position: relative }
+.font-size-control {
+	@include flex(flex, flex-end, flex-start);
+	position: absolute;
+	right: 0;
+	top: 12px;
+	font-size: 0.875em;
+	i { 
+		font-size: 1.5em;
+		margin-left: 4px;
+		cursor: pointer;
+	}
+	opacity: 0.35;
+}
+.header__secondary__content__nav {	
+	a {
+		padding: 10px 20px;
+		display:inline-block;
+		font-size: 1.2em;
+		color: $color-text-light;
+		&.selected {
+			background-color: $color-text-light;
+			color: #000;
+		}	
+	}
+}
+// -------------------------- header tertiary --------------------------
+.header__tertiary {
+	width: 100%;
+	background-color: $color-text-light;
+	color: $color-blue-medium;
+}
+.header__tertiary__content {
+	@include flex( flex, space-between, center);
+}
+.header__tertiary__content__nav {	
+	@include flex-size(1, 0);
+	li {
+		padding: 10px 10px;
+		&:first-child {
+			padding-left: 20px;
+		}
+	}
+	a {
+		padding: 0px 10px;
+		display:inline-block;
+		font-size: 1.2em;
+		@include border-radius(2px);
+		color: $color-blue-medium;
+		&.selected {
+			background-color: $color-blue-medium;
+			color: $color-text-light;
+		}	
+	}
+}
+#addResource {
+	transform: rotate(0deg);
+	&:hover {
+		i {
+			animation-duration: 1s;
+	  		animation-name: rotate;
+	  		animation-iteration-count: infinite;
+	  		animation-timing-function: linear;
+	  	}
+	}
+}
