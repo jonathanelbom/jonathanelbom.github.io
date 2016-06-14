@@ -1,4 +1,4 @@
-(function( global ) {
+(function( window ) {
 	var folderControls = document.querySelector( '.main__folders__inner__controls' );
 	var cardControls = document.querySelector( '.main__content__controls' );
 	var folderList = document.querySelector( '.main__folders__inner__content' );
@@ -16,7 +16,7 @@
 	var modalBackWrap = document.querySelector( '.modal__footer__back__wrap' );
 	var modalBg = document.querySelector( '.modal__bg' );
 	var cloneCards = [ document.querySelector( '#clone_card_1' ), document.querySelector( '#clone_card_2' ), document.querySelector( '#clone_card_3' ) ];
-	var selectOpts = document.querySelectorAll('.modal__body__content1__select');
+	var selectOpts = Array.prototype.slice.call( document.querySelectorAll('.modal__body__content1__select') );
 	var modalHeader = document.querySelector('.modal__header');
 	var modalFooter = document.querySelector('.modal__footer');
 	var modalStep1 = document.querySelector('.modal__body__content1');
@@ -25,9 +25,9 @@
 	var i;
 	
 	// add select clicks for the modal content step 1
-	for (i=0; i<selectOpts.length; i++) {
-		selectOpts[i].addEventListener('click', toggleResourceRights);
-	}
+	selectOpts.forEach( function( elem, idx ) {
+		elem.addEventListener('click', toggleResourceRights);
+	});
 	// clone card for main page
 	for (i=0; i<8; i++) {
 		var clone = cloneCards[i%3].cloneNode(true);
@@ -55,7 +55,9 @@
 			resize();
 		}
 	}
-
+	modalBg.addEventListener( 'click', function() {
+		toggleModal(false);
+	})
 	// main action listener
 	addResource.addEventListener( 'click', function() {
 		toggleModal(true);
@@ -75,7 +77,9 @@
 	});
 	modalDialog.addEventListener( 'transitionend', function(e) {
 		modalOpen = !modalOpen;
-		//console.log('transend, modalOpen:',modalOpen);
+		onTransEnd();
+	});
+	function onTransEnd() {
 		if ( !modalOpen ) {
 			// reset modal and go back to step 1
 			modalBody.onscroll = null;
@@ -83,12 +87,11 @@
 			modalScrolling();
 			gotoStep(1);
 			// reset step 1 state
-			for (i=0; i<selectOpts.length; i++) {
-				var elem = selectOpts[i];
-				elem.setAttribute('aria-pressed', 'false');
+			selectOpts.forEach( function( elem, idx ) {
+				elem.setAttribute('aria-checked', 'false');
 				s = elem.querySelector('.select-text');
 				s.textContent = 'Select';
-			}
+			});
 			modalNext.setAttribute('disabled', 'disabled');
 			modal.style.display = 'none';
 			modalBg.style.display = 'none';
@@ -96,7 +99,7 @@
 			modalBody.onscroll = modalScrolling;
 			modalScrolling();
 		}
-	});
+	}
 	function gotoStep( step ) {
 		modalBody.scrollTop = 0;
 		modalScrolling();
@@ -128,10 +131,10 @@
 		var target = e.target;
 		var s = target.querySelector('.select-text');
 		s.textContent = 'Selected';
-		target.setAttribute('aria-pressed', 'true');
-		selectOpts.forEach( function( elem, idx) {
+		target.setAttribute('aria-checked', 'true');
+		selectOpts.forEach( function( elem, idx ) {
 			if ( elem !== target ) {
-				elem.setAttribute('aria-pressed', 'false');
+				elem.setAttribute('aria-checked', 'false');
 				s = elem.querySelector('.select-text');
 				s.textContent = 'Select';
 			}
@@ -146,20 +149,34 @@
 				modal.classList.add('shown');
 				modalBg.classList.add('shown');
 			}, 0);
+			// safety call if modal open trans end not handled  
+			setTimeout( function() {
+				if ( !modalOpen ) {
+					modalOpen = true;
+					onTransEnd();
+				}
+			}, 1000);
 		} else {
 			modal.classList.remove('shown');
 			modalBg.classList.remove('shown');
+			// safety call if modal close trans end not handled
+			setTimeout( function() {
+				if ( modalOpen ) {
+					modalOpen = false;
+					onTransEnd();
+				}
+			}, 1000);
 		}
 	}
 	function resize() {
-		folderList.style.height = (global.innerHeight - folderList.offsetTop) +'px';
-		cardPane.style.height = (global.innerHeight - cardPane.offsetTop) +'px';
+		folderList.style.height = (window.innerHeight - folderList.offsetTop) +'px';
+		cardPane.style.height = (window.innerHeight - cardPane.offsetTop) +'px';
 		modalScrolling();
 	}
 	function modalScrolling() {		
 		modalBody.scrollTop > 0 ? modalHeader.classList.add('scrolled') : modalHeader.classList.remove('scrolled');
 		var innerHeight = modalBody.clientHeight - parseInt( getElemStyle(modalBody, 'paddingTop'), 0) - parseInt( getElemStyle(modalBody, 'paddingBottom'), 0);
-		modalBody.scrollHeight > modalBody.clientHeight ? modalFooter.classList.add('scrolled-inverse') : modalFooter.classList.remove('scrolled-inverse');
+		modalBody.scrollHeight > modalBody.clientHeight && modalBody.scrollHeight - modalBody.scrollTop - 3 > modalBody.clientHeight ? modalFooter.classList.add('scrolled-inverse') : modalFooter.classList.remove('scrolled-inverse');
 	}
 	function scrolling(e) {
 		var elem = e.target;
@@ -184,12 +201,21 @@
 
 	// resize / scroll handlers
 	var delay = 250;
-	global.onresize = debounce( resize, delay );
+	window.onresize = debounce( resize, delay );
 	folderList.onscroll = scrolling;
 	cardPane.onscroll = scrolling;
-	global.setTimeout(resize, 250);
-	// global.setTimeout( function() {
-	// 	toggleModal(true);
-	// }, 1000);
+	window.setTimeout(resize, 250);
+
+	var array1 = [3,1,4,5,2];
+	function transformMe( a ) {
+		// sort a ascending numerically
+		a = a.sort();
+		// return a, a reversed, and a. Array.prototype.reverse reverses in place (while sort and concat return a new array),
+		// make sure the reverse call is operating on a concatenated copy
+		return a.concat( a.concat().reverse(), a );
+	}
+	array1 = transformMe(array1)
+    console.log('array1:',array1);
+    //array1 = [1,2,3,4,5,5,4,3,2,1,1,2,3,4,5]
 
 })( window )

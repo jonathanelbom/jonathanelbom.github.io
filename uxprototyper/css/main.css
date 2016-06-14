@@ -896,6 +896,7 @@ header li {
 /* ----------- modal ----------- */
 /* line 17, ../sass/_modal.scss */
 .modal {
+  pointer-events: none;
   display: none;
   overflow: hidden;
   height: 100%;
@@ -930,6 +931,7 @@ header li {
 
 /* line 44, ../sass/_modal.scss */
 .modal__dialog {
+  pointer-events: auto;
   -webkit-box-shadow: 0 4px 12px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 4px 12px 2px rgba(0, 0, 0, 0.3);
   height: 90%;
@@ -940,22 +942,22 @@ header li {
   margin: 0 auto;
   background-color: #fff;
 }
-/* line 57, ../sass/_modal.scss */
+/* line 58, ../sass/_modal.scss */
 .modal__dialog.progress .modal__header {
   height: 80px;
 }
-/* line 60, ../sass/_modal.scss */
+/* line 61, ../sass/_modal.scss */
 .modal__dialog.progress .modal__body {
   height: calc(100% - (2 * 50px + 30px) );
 }
 
-/* line 65, ../sass/_modal.scss */
+/* line 66, ../sass/_modal.scss */
 .modal a {
   text-decoration: none;
   color: #fff;
 }
 
-/* line 69, ../sass/_modal.scss */
+/* line 70, ../sass/_modal.scss */
 .modal__header {
   padding: 12px 20px;
   background-color: #0d61a6;
@@ -967,15 +969,15 @@ header li {
   z-index: 200;
 }
 
-/* line 79, ../sass/_modal.scss */
+/* line 80, ../sass/_modal.scss */
 .modal__body {
   position: relative;
   padding: 15px 50px 25px 50px;
   overflow-y: auto;
-  height: calc(100% - 2*50px);
+  height: calc( 100% - 2*50px );
 }
 
-/* line 85, ../sass/_modal.scss */
+/* line 86, ../sass/_modal.scss */
 .modal__footer {
   height: 50px;
   width: 100%;
@@ -991,7 +993,7 @@ header li {
   background-color: #fff;
   border-top: 1px solid #ccc;
 }
-/* line 94, ../sass/_modal.scss */
+/* line 95, ../sass/_modal.scss */
 .modal__footer > :first-child {
   flex-grow: 1;
   -webkit-flex-grow: 1;
@@ -1000,12 +1002,12 @@ header li {
   flex-basis: auto;
   -webkit-flex-basis: auto;
 }
-/* line 97, ../sass/_modal.scss */
+/* line 98, ../sass/_modal.scss */
 .modal__footer > :not(:last-child) {
   margin-right: 10px;
 }
 
-/* line 101, ../sass/_modal.scss */
+/* line 102, ../sass/_modal.scss */
 .modal__bg {
   display: none;
   position: fixed;
@@ -1015,6 +1017,7 @@ header li {
   left: 0;
   z-index: 1040;
   background-color: rgba(0, 0, 0, 0.75);
+  cursor: pointer;
 }
 
 @keyframes scale {
@@ -1054,7 +1057,6 @@ header li {
 
 /* line 25, ../sass/_modal-content1.scss */
 .modal__body__content1__select {
-  cursor: pointer;
   display: flex;
   display: -webkit-flex;
   justify-content: center;
@@ -1064,24 +1066,29 @@ header li {
   flex-flow: column;
   color: #0d61a6;
   text-align: center;
+  padding: 15px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
 }
-/* line 31, ../sass/_modal-content1.scss */
+/* line 34, ../sass/_modal-content1.scss */
 .modal__body__content1__select > *:not(:last-child) {
   margin-bottom: 10px;
 }
-/* line 32, ../sass/_modal-content1.scss */
+/* line 35, ../sass/_modal-content1.scss */
 .modal__body__content1__select * {
   pointer-events: none;
 }
-/* line 33, ../sass/_modal-content1.scss */
+/* line 36, ../sass/_modal-content1.scss */
 .modal__body__content1__select > i {
   font-size: 5em;
 }
-/* line 34, ../sass/_modal-content1.scss */
+/* line 37, ../sass/_modal-content1.scss */
 .modal__body__content1__select > span {
   font-size: 1.3em;
 }
-/* line 35, ../sass/_modal-content1.scss */
+/* line 38, ../sass/_modal-content1.scss */
 .modal__body__content1__select > div {
   font-size: 1.3em;
   display: flex;
@@ -1091,7 +1098,7 @@ header li {
   align-items: center;
   -webkit-align-items: center;
 }
-/* line 38, ../sass/_modal-content1.scss */
+/* line 41, ../sass/_modal-content1.scss */
 .modal__body__content1__select > div > i {
   color: #fff;
   -webkit-text-shadow: 0px 0px 1px #0d61a6;
@@ -1099,35 +1106,40 @@ header li {
   font-size: 2.5em;
   margin-right: 10px;
 }
-/* line 46, ../sass/_modal-content1.scss */
-.modal__body__content1__select[aria-pressed="false"]:hover > div > i {
+/* line 48, ../sass/_modal-content1.scss */
+.modal__body__content1__select[aria-checked="false"]:hover {
+  cursor: pointer;
+  background-color: #dcf0fb;
+}
+/* line 50, ../sass/_modal-content1.scss */
+.modal__body__content1__select[aria-checked="false"]:hover > div > i {
   animation-name: scale;
   animation-duration: 0.5s;
   animation-fill-mode: forwards;
 }
-/* line 53, ../sass/_modal-content1.scss */
-.modal__body__content1__select[aria-pressed="true"] > div, .modal__body__content1__select[aria-pressed="true"] > span {
+/* line 58, ../sass/_modal-content1.scss */
+.modal__body__content1__select[aria-checked="true"] > div, .modal__body__content1__select[aria-checked="true"] > span {
   font-weight: bold;
 }
-/* line 55, ../sass/_modal-content1.scss */
-.modal__body__content1__select[aria-pressed="true"] > div i, .modal__body__content1__select[aria-pressed="true"] > span i {
+/* line 60, ../sass/_modal-content1.scss */
+.modal__body__content1__select[aria-checked="true"] > div i, .modal__body__content1__select[aria-checked="true"] > span i {
   text-shadow: none;
   color: #0d61a6;
 }
 
-/* line 63, ../sass/_modal-content1.scss */
+/* line 68, ../sass/_modal-content1.scss */
 .modal__body__content1 p {
   font-size: 0.875em;
 }
-/* line 65, ../sass/_modal-content1.scss */
+/* line 70, ../sass/_modal-content1.scss */
 .modal__body__content1 p:first-of-type {
   margin-top: 30px;
 }
-/* line 69, ../sass/_modal-content1.scss */
+/* line 74, ../sass/_modal-content1.scss */
 .modal__body__content1 .col-6-12 {
   padding: 20px;
 }
-/* line 71, ../sass/_modal-content1.scss */
+/* line 76, ../sass/_modal-content1.scss */
 .modal__body__content1 .col-6-12:last-child {
   border-left: 1px solid #3b79b1;
 }
@@ -1145,7 +1157,7 @@ header li {
 
 /* line 14, ../sass/_modal-content2.scss */
 .modal__body__content2 > .col {
-  padding: 0 20px;
+  padding: 0 20px 20px;
 }
 
 /* line 17, ../sass/_modal-content2.scss */

@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Boop - Jonathan Elbom</title>
+		<style>
+			* { box-size: border-box; }
+			html, body {
+				height: 100%;
+				font-family: sans-serif;
+				font-size: 14px;
+				font-weight: 200;
+				background-color: #eee;
+			}
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			ul {
+				width: 100%;
+				margin:0;
+				padding-left: 0;
+				list-style-type: none;
+			}
+			li {
+				background-color: #4a4a4a;
+				height: 20px;
+				padding: 2px 10px;
+				display: flex;
+				align-items: center;
+				perspective: 800px;
+				perspective-origin: top center;
+			}
+			.trans.shown {
+				transform: rotateX(0deg);
+			}
+			li.trans {
+				transform: rotateX(90deg);
+				transition: transform 0.5s;
+			}
+			li:nth-child(even) {
+				background-color: #444;
+			}
+			.count {
+				letter-spacing: -0.05em;
+				font-size: 20px;
+				font-weight:bold;
+				opacity:0.2;
+				text-align: right;
+				min-width: 50px;
+			}
+			.comment {
+				position:relative;
+				line-height: 40px;
+			}
+			.reference {
+				margin-left: 20px;
+				color: #ccc;
+			}
+			.boppity {
+				left: 25%;
+				color: #E80C7A;
+				font-weight: 400;
+			}
+			.bibbitty {
+				left: 15%;	
+				color: #FF540D;
+				font-size: 12px;
+				font-style: italic;
+			}
+			.boop {
+				left: 45%;
+				color: #ff0000;
+				font-size: 18px;
+				font-weight: bold;	
+			}
+			.bippittyboppityboop {
+				left: 48%;
+				color: #ff0dff;
+			}
+		</style>
+	</head>
+	<body>
+		<ul id="ulist">
+			<li id="liTemplate" class="trans">
+				<span class="count"></span>
+				<span class="reference"></span>
+				<span class="comment"></span>
+			</li>
+		</ul>
+
+		<script>
+		/*
+		100 items with javascript. The list items should contain the text “bibbitty” in even entries and “boppity” in odd entries. If the item is a multiple of 3, it should contain “boop”. If the item is a multiple of 5, it should contain “bippittyboppityboop”.
+		*/
+			(function(window){
+				window.onload = function() {document.body.scrollTop = document.documentElement.scrollTop = 0;};
+				var ul = document.querySelector('#ulist');
+				var liTemplate = document.querySelector('#liTemplate');
+				for (var i=0; i<100; i++) {
+					var li = liTemplate.cloneNode(true);
+					li.id = '';
+					li.querySelector('.count').textContent = i;
+					var comment = getComment(i)
+					var lic = li.querySelector('.comment');
+					var lir = li.querySelector('.reference')
+					lic.textContent = comment;
+					lic.classList.add(comment);
+					lir.textContent = comment;
+					ul.appendChild(li)
+					setTimeout( (function(li, i) {
+						return function() {
+							li.style.display = 'flex';
+							li.querySelector('.comment').style.left = Math.random()*50 + 10 + '%';
+							li.classList.add('shown');
+							var diff = li.offsetTop - (document.body.clientHeight + document.body.scrollTop);
+							if ( diff > 0 ) {
+								window.scrollTo( 0, document.body.scrollTop + document.body.clientHeight );
+							}
+						};
+					})(li, i), 50*i);		
+				}
+				ul.removeChild( liTemplate );
+				//determine the saying based i modulo 1 (odd), 2 (even), 3, and 5
+				// zero is even, modulo test doesnt help us with that.
+				function getComment(i) {
+					var comment = 'boppity';
+					if ( i === 0 ) {
+						comment = 'bibbitty';
+					} else if ( i % 5 === 0 ) {
+						comment = 'bippittyboppityboop';
+					} else if ( i % 3 === 0 ) {
+						comment = 'boop';
+					} else if ( i % 2 === 0 ) {
+						comment = 'bibbitty';
+					}
+					return comment;
+				}
+				window.onbeforeunload = function(){
+					window.scrollTo(0,0);
+				}
+			})(window);
+		</script>
+	</body>
+</html>

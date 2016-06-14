@@ -23,11 +23,14 @@
 	}
 }
 .modal__body__content1__select {
-	cursor:pointer;
+	//cursor:pointer;
 	@include flex(flex, center, center);
 	flex-flow: column;
 	color: $color-blue-dark;
 	text-align: center;
+	padding: 15px;
+	@include border-radius( 10px );
+	
 	> *:not(:last-child) { margin-bottom: 10px; }
 	* { pointer-events: none; }
 	> i { font-size: 5em; }
@@ -42,14 +45,16 @@
 			margin-right: 10px;
 		}
 	}
-	&[aria-pressed="false"]:hover {
+	&[aria-checked="false"]:hover {
+		cursor:pointer;
 		> div > i {
 			animation-name: scale;
 			animation-duration: 0.5s;
 			animation-fill-mode: forwards;
 		}
+		background-color:$color-blue-light;
 	}
-	&[aria-pressed="true"] {
+	&[aria-checked="true"] {
 		> div, > span {
 			font-weight: bold;
 			i {

@@ -15,7 +15,7 @@
 }
 /* ----------- modal ----------- */
 .modal {
-	// pointer-events: none;
+	pointer-events: none;
 	display:none;
 	overflow:hidden;
 	height: 100%;
@@ -42,6 +42,7 @@
   	clear: both;
 }
 .modal__dialog {
+	pointer-events: auto;
 	// @include flex(flex, flex-start, flex-start);
 	// flex-flow: column;
 	// > * { @include flex-size(0, 0); }
@@ -80,7 +81,7 @@
 	position: relative;
  	padding: 15px 50px 25px 50px;
  	overflow-y: auto;
- 	height: calc(100% - 2*#{$modal-header-footer-height});
+ 	height: calc( 100% - 2*#{$modal-header-footer-height} );
 }
 .modal__footer {
 	height: $modal-header-footer-height;
@@ -107,4 +108,5 @@
 	left:0;
 	z-index:1040;
 	background-color: rgba(0,0,0,0.75);
+	cursor: pointer;
 }
