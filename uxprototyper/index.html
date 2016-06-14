@@ -31,86 +31,9 @@
 			section:not(:first-child) {
 				border-top: 1px solid #ccc;
 			}
-			.progs {
-				display:flex;
-				align-items:center;
-				justify-content: flex-start;
-				white-space: nowrap;
-				background-color: #aaa;
-				border:1px solid #aaa;
-			}
-			.prog {
-				height: 40px;
-				color: #fff;
-				display:flex;
-				align-items:center;
-				justify-content: flex-start;
-				position:relative;
-			}
-			.prog:not(:first-child) > .body {
-				padding-left: 30px;
-			}
-			.prog > .body.current {
-				background-color: #fff;
-				border-color:#0000ff;
-			}
-			.prog > .tip.current {
-				border-color: #0000ff;
-				background-color: #fff;
-			}
-			.prog:nth-child(1) { z-index: 43; }
-			.prog:nth-child(2) { 
-				z-index: 42;
-				left: -20px;
-			}
-			.prog:nth-child(3) { 
-				z-index: 41;
-				left: -40px;
-			}
-			.prog:nth-child(4) { 
-				z-index: 40;
-			}
-			.prog > .body {
-				display: inline-flex;
-				align-items: center;
-				background-color: #999;
-				height: 100%;
-				position:relative;
-				z-index: 10;
-				padding-left: 20px;
-				padding-right: 10px;
-				border-top:1px solid #ff0000;
-				border-bottom:1px solid #ff0000;
-				color: #333;
-			}
-			.prog > .tip {
-				display: inline-block;
-				background-color: #999;
-				height: 19px;
-				width: 19px;
-				transform: scaleY(1.5) rotate(45deg);
-				position: relative;
-				left: -10px;
-				border-top:1px solid #fff;
-				border-right:1px solid #fff;
-			}
 		</style>
 	</head>
 	<body>
-		<div class="progs">
-			<div class="prog">
-				<div class="body current">Sample Step 1</div>
-				<div class="tip current"></div>
-			</div>
-			<div class="prog">
-				<div class="body">Sample Step 2</div>
-				<div class="tip"></div>
-			</div>
-			<div class="prog">
-				<div class="body">Sample Step 3</div>
-				<div class="tip"></div>
-			</div>
-		</div>
 		<h1>User Experience Prototyper - Jonathan Elbom </h1>
 		<section>
 			<h2>Part 1</h2>
