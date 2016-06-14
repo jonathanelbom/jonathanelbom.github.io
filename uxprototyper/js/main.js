@@ -149,13 +149,14 @@
 				modal.classList.add('shown');
 				modalBg.classList.add('shown');
 			}, 0);
+			var timeout = 2000;
 			// safety call if modal open trans end not handled  
 			setTimeout( function() {
 				if ( !modalOpen ) {
 					modalOpen = true;
 					onTransEnd();
 				}
-			}, 1000);
+			}, timeout);
 		} else {
 			modal.classList.remove('shown');
 			modalBg.classList.remove('shown');
@@ -165,7 +166,7 @@
 					modalOpen = false;
 					onTransEnd();
 				}
-			}, 1000);
+			}, timeout);
 		}
 	}
 	function resize() {
