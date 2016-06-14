@@ -74,11 +74,6 @@
 	folderList.onscroll = scrolling;
 	cardPane.onscroll = scrolling;
 	window.onload = resize;
-
-	setTimeout( function() {
-		toggleModal(true);
-		gotoStep(2);
-	}, 500);
 	
 	function updateFontSize( dir ) {
 		var fontSize = parseInt( getElemStyle( document.body, 'fontSize' ), 0);
