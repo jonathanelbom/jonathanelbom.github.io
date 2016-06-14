@@ -42,19 +42,7 @@
 		updateFontSize('minus');
 	});
 
-	function updateFontSize( dir ) {
-		var fontSize = parseInt( getElemStyle( document.body, 'fontSize' ), 0);
-		var newSize = fontSize;
-		if ( dir === 'minus' && fontSize > 8) { //min size
-			newSize -= 1;
-		} else if ( dir === 'plus' && fontSize < 24) { //max size
-			newSize += 1;
-		}
-		if ( newSize !== fontSize ) {
-			document.body.style.fontSize = newSize+'px';
-			resize();
-		}
-	}
+	
 	modalBg.addEventListener( 'click', function() {
 		toggleModal(false);
 	})
@@ -79,6 +67,32 @@
 		modalOpen = !modalOpen;
 		onTransEnd();
 	});
+
+	// resize / scroll handlers
+	var delay = 250;
+	window.onresize = debounce( resize, delay );
+	folderList.onscroll = scrolling;
+	cardPane.onscroll = scrolling;
+	window.onload = resize;
+
+	setTimeout( function() {
+		toggleModal(true);
+		gotoStep(2);
+	}, 500);
+	
+	function updateFontSize( dir ) {
+		var fontSize = parseInt( getElemStyle( document.body, 'fontSize' ), 0);
+		var newSize = fontSize;
+		if ( dir === 'minus' && fontSize > 8) { //min size
+			newSize -= 1;
+		} else if ( dir === 'plus' && fontSize < 24) { //max size
+			newSize += 1;
+		}
+		if ( newSize !== fontSize ) {
+			document.body.style.fontSize = newSize+'px';
+			resize();
+		}
+	}
 	function onTransEnd() {
 		if ( !modalOpen ) {
 			// reset modal and go back to step 1
@@ -142,6 +156,7 @@
 		});
 	}
 	function toggleModal(show) {
+		var timeout = 1500;
 		if (show) {
 			modal.style.display = 'block';
 			modalBg.style.display = 'block';
@@ -149,7 +164,6 @@
 				modal.classList.add('shown');
 				modalBg.classList.add('shown');
 			}, 0);
-			var timeout = 2000;
 			// safety call if modal open trans end not handled  
 			setTimeout( function() {
 				if ( !modalOpen ) {
@@ -184,7 +198,6 @@
 		var classList = elem === folderList ? folderControls.classList : cardControls.classList;
 		elem.scrollTop > 0 ? classList.add('scrolled') : classList.remove('scrolled');
 	}
-
 	function debounce(func, wait, immediate) {
         var timeout;
         return function() {
@@ -199,24 +212,4 @@
             if (callNow) func.apply(context, args);
         };
     }
-
-	// resize / scroll handlers
-	var delay = 250;
-	window.onresize = debounce( resize, delay );
-	folderList.onscroll = scrolling;
-	cardPane.onscroll = scrolling;
-	window.setTimeout(resize, 250);
-
-	var array1 = [3,1,4,5,2];
-	function transformMe( a ) {
-		// sort a ascending numerically
-		a = a.sort();
-		// return a, a reversed, and a. Array.prototype.reverse reverses in place (while sort and concat return a new array),
-		// make sure the reverse call is operating on a concatenated copy
-		return a.concat( a.concat().reverse(), a );
-	}
-	array1 = transformMe(array1)
-    console.log('array1:',array1);
-    //array1 = [1,2,3,4,5,5,4,3,2,1,1,2,3,4,5]
-
 })( window )

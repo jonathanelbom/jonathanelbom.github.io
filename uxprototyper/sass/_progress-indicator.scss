@@ -1,97 +1,81 @@
-@import "compass/css3";
-
-$stepColor: $color-blue-light;
-$stepColorHover: $color-blue-light;
-$stepColorCompleted: #fff;
-$textColor: #aaa;
-$textColorCompleted: #333;
-
+$step-pad-left: 20px;
+$step-border-color: #fff;
+$step-bg-color: $color-blue-light;
+$step-current-border-color: $color-blue-dark;
+$step-current-bg-color: #fff;
 .modal__body__steps {
+  @include flex(flex, dlex-start, center);
+  background-color: $step-bg-color;
+  border:1px solid $step-bg-color;
+  border-left: none;
   width: 100%;
   position: absolute;
   top: $modal-header-footer-height;
   left: 0;
   display:none;
+  min-width: 718px;
 }
-.modal__dialog.progress .modal__body__steps { display: block; };
-.modal__body__steps__bg {
-  width: 100%;
-  background-color: $color-blue-light;
-  border-bottom: 1px solid #ccc;
-  height: $progress-indicator-height + 1;
-  position: absolute;
-  top: 0;
-  left: 0;
+.modal__dialog.progress .modal__body__steps {
+  @include flex(flex, dlex-start, center);
 }
-.modal__body__step-indicator {
-  margin-bottom: 20px;
-  line-height: $progress-indicator-height;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #fff;
-  border-bottom: 1px solid #ccc;
-}
-.modal__body__step-indicator__step {
-  font-size: 0.8em;
-  display: block;
-  float: left;
-  background: $stepColor;
-  padding-right: 10px;
+.modal__body__step {
   height: $progress-indicator-height;
-  line-height: 30px;
-  margin-right: 33px;
-  position: relative;
-  text-decoration: none;
-  color: $textColor;
-  cursor: default;
-    
-  &:before {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: 0;
-    left: -30px;
-    border: 15px solid transparent;
-    border-color: $stepColor;
-    border-left-color: transparent;
-  }
-    
-  &:after {
-    content: "";
-    display: block;
-    width: 0;
-    height: 0;
-    position: absolute;
-    top: 0;
-    right: -30px;
-    border: 15px solid transparent;
-    border-left-color: $stepColor;
-  }
-    
-  &:first-of-type {
-    padding-left: 15px;
-    &:before { display: none; }
-  }
-  
-  &.no-after:after { display: none; }
-  
-  &:last-of-type {
-    margin-right: 0;
-    padding-right: 0;
-    &:after { display: none; }
-  }
+  color: #fff;
+  display:flex;
+  align-items:center;
+  justify-content: flex-start;
+  position:relative;
+}
+.modal__body__step:not(:first-child) > .body {
+  padding-left: 30px;
+}
 
-  &.completed {
-    background: $stepColorCompleted;
-    color: $textColorCompleted;
-    cursor: pointer;
-    &:before {
-      border-color: $stepColorCompleted;
-      border-left-color: transparent;
-    }
-    &:after { border-left-color: $stepColorCompleted; }
-  }
+.modal__body__step:nth-child(1) {
+  z-index: 43;
+}
+.modal__body__step:nth-child(2) { 
+  z-index: 42;
+  left: -20px;
+}
+.modal__body__step:nth-child(3) { 
+  z-index: 41;
+  left: -40px;
+}
+.modal__body__step:nth-child(4) { 
+  z-index: 40;
+  left: -60px;
+}
+.modal__body__step > .body {
+  @include flex(inline-flex, center, center);
+  font-size: 0.8em;
+  height: 100%;
+  position:relative;
+  z-index: 10;
+  padding-left: 20px;
+  padding-right: 10px;
+  background-color: $step-bg-color;
+  border-top:1px solid $step-bg-color;
+  border-bottom:1px solid $step-bg-color;
+  color: #aaa;
+  flex-shrink: 0;
+}
+.modal__body__step > .tip {
+  display: inline-block;
+  height: 19px;
+  width: 19px;
+  transform: scaleY(1.5) rotate(45deg);
+  position: relative;
+  left: -9px;
+  background-color: $step-bg-color;
+  border-top:1px solid $step-border-color;
+  border-right:1px solid $step-border-color;
+}
+.modal__body__step > .body.current {
+  color: #333;
+  background-color: $step-current-bg-color;
+  border-color: $step-current-border-color;
+}
+.modal__body__step > .tip.current {
+  background-color: $step-current-bg-color;
+  border-color: $step-current-border-color;
 }

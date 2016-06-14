@@ -3,440 +3,167 @@
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>User Experience Prototyper - Jonathan Elbom</title>
-		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/normalize.css"/>
-		<link rel="stylesheet" href="css/main.css"/>
+		<style>
+			* { box-size: border-box; }
+			html, body {
+				height: 100%;
+				font-family: sans-serif;
+				font-size: 14px;
+				font-weight: normal;
+				background-color: #eee;
+			}
+			body {
+				padding: 25px;
+				margin: 0;
+				max-width: 900px;
+			}
+			.tabbed {
+				display:inline-block;
+				margin-left: 3em;
+			}
+			.comment {
+				color: #aaa;
+				text-style: italic;
+			}
+			section { 
+				margin-bottom: 30px;
+			}
+			section:not(:first-child) {
+				border-top: 1px solid #ccc;
+			}
+			.progs {
+				display:flex;
+				align-items:center;
+				justify-content: flex-start;
+				white-space: nowrap;
+				background-color: #aaa;
+				border:1px solid #aaa;
+			}
+			.prog {
+				height: 40px;
+				color: #fff;
+				display:flex;
+				align-items:center;
+				justify-content: flex-start;
+				position:relative;
+			}
+			.prog:not(:first-child) > .body {
+				padding-left: 30px;
+			}
+			.prog > .body.current {
+				background-color: #fff;
+				border-color:#0000ff;
+			}
+			.prog > .tip.current {
+				border-color: #0000ff;
+				background-color: #fff;
+			}
+			.prog:nth-child(1) { z-index: 43; }
+			.prog:nth-child(2) { 
+				z-index: 42;
+				left: -20px;
+			}
+			.prog:nth-child(3) { 
+				z-index: 41;
+				left: -40px;
+			}
+			.prog:nth-child(4) { 
+				z-index: 40;
+			}
+			.prog > .body {
+				display: inline-flex;
+				align-items: center;
+				background-color: #999;
+				height: 100%;
+				position:relative;
+				z-index: 10;
+				padding-left: 20px;
+				padding-right: 10px;
+				border-top:1px solid #ff0000;
+				border-bottom:1px solid #ff0000;
+				color: #333;
+			}
+			.prog > .tip {
+				display: inline-block;
+				background-color: #999;
+				height: 19px;
+				width: 19px;
+				transform: scaleY(1.5) rotate(45deg);
+				position: relative;
+				left: -10px;
+				border-top:1px solid #fff;
+				border-right:1px solid #fff;
+			}
+		</style>
 	</head>
 	<body>
-
-		<!-- header -->
-		<header>
-			<div class="header__primary">
-				<div class="header__primary__content grid">
-					<div class="header__primary__content__logo">PEARSON</div>
-					<nav class="header__primary__content__nav">
-						<ul>
-							<li><a href="#"><i class="fa fa-power-off icon-for-text" aria-hidden="true"></i>Quick Start</a></li>
-							<li><a href="#"><i class="fa fa-question-circle icon-for-text" aria-hidden="true"></i>Help</a></li>
-							<li><a href="#"><i class="fa fa-heart icon-for-text" aria-hidden="true"></i>47 Favorites</a></li>
-							<li><span class="user-icon"><i class="fa fa-user" aria-hidden="true"></i></span><a href="#">Jane Smith<i class="fa fa-chevron-down" aria-hidden="true"></i></a></li>
-						</ul>
-					</nav>
-				</div>
+		<div class="progs">
+			<div class="prog">
+				<div class="body current">Sample Step 1</div>
+				<div class="tip current"></div>
 			</div>
-			<div class="header__secondary">
-				<div class="header__secondary__content grid">
-					<nav class="header__secondary__content__nav">
-						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#" class="selected">My Collections</a></li>
-							<li><a href="#">Search</a></li>
-							<li><a href="#">Curated Collection</a></li>
-						</ul>
-					</nav>
-					<div class="font-size-control">
-						font size:<i id="fontPlus" class="fa fa-plus-circle" aria-hidden="true"></i><i id="fontMinus" class="fa fa-minus-circle" aria-hidden="true"></i>
-					</div>
-				</div>
-
+			<div class="prog">
+				<div class="body">Sample Step 2</div>
+				<div class="tip"></div>
 			</div>
-			<div class="header__tertiary">
-				<div class="header__tertiary__content grid">
-					<nav class="header__tertiary__content__nav">
-						<ul>
-							<li><a href="#" class="selected">Content</a></li>
-							<li><a href="#">Courses</a></li>
-							<li><a href="#">Collections</a></li>
-						</ul>
-					</nav>
-					<a id="addResource" href="#"><i class="fa fa-plus icon-for-text" aria-hidden="true"></i>Add a Resource</a>
-				</div>
-			</div>
-		</header>
-
-		<!-- main area -->
-		<div class="main grid">
-
-			<!-- left panel: folders -->
-			<section class="main__folders col col-3-12">
-				<div class="main__folders__inner">
-
-					<!-- folders controls -->
-					<div class="main__folders__inner__controls">
-						<a href="#"><i class="fa fa-plus icon-for-text" aria-hidden="true"></i>Create a Folder</a>
-						<a href="#">Edit Folders</a>
-					</div>
-
-					<!-- folders -->
-					<ul class="main__folders__inner__content">
-						<li class="main__folders__inner__content__item--primary">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">Approved Content</div>
-							</div>
-						</li>
-						<li class="main__folders__inner__content__item--primary">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">Rejected Content</div>
-							</div>
-						</li>
-						<li class="main__folders__inner__content__item--primary selected">
-							<!-- <div class="book-end"></div> -->
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">All Content</div>
-							</div>
-						</li>
-						<li class="main__folders__inner__content__item--secondary">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">
-									Happy Stuff<span>3 Resources</span>
-								</div>
-							</div>
-						</li>
-						<li class="main__folders__inner__content__item--secondary selected">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">
-									More Happy Stuff that I found<span>30 Resources</span>
-								</div>
-							</div>
-						</li>
-						<li class="main__folders__inner__content__item--secondary">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">
-									Crazy Stuff<span>3 Resources</span>
-								</div>
-							</div>
-						</li>
-						<li class="main__folders__inner__content__item--secondary">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">
-									More Crazy Stuff I really like<span>3 Resources</span>
-								</div>
-							</div>
-							<div class="book-end"></div>
-						</li>
-						<li class="main__folders__inner__content__item--primary">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">Original Content</div>
-							</div>
-						</li>
-						<li class="main__folders__inner__content__item--primary">
-							<div class="main__folders__inner__content__item__content">
-								<i class="fa fa-folder-open icon-for-text" aria-hidden="true"></i>
-								<div class="main__folders__inner__content__item__text">Pending Review</div>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</section>
-
-			<!-- right panel: content -->
-			<section class="main__content col col-9-12 no-pad">
-
-				<!-- cards controls -->
-				<div class="main__content__controls">
-					<div class="main__content__controls__row">
-						<span class="main__content__controls__resources">30 Resources</span>
-						<select class="main__content__controls__context">
-							<option selected>All Statuses</option>
-							<option>Pending Review</option>
-							<option>Approved</option>
-						</select>
-						<div class="main__content__controls__sort">
-							Sort by <span class="last-mod selected">last modified</span>&nbsp;|&nbsp;<span class="alphab">alphabetical</span>
-						</div>
-					</div>
-					<div class="main__content__controls__row">
-						<a class="main__content__controls__origcont">
-							<div class="circle"><i class="fa fa-check" aria-hidden="true"></i></div>Show only original Content
-						</a>
-						<select class="main__content__controls__actions">
-							<option selected>Actions</option>
-							<option>Action 1</option>
-							<option>Action 2</option>
-						</select>
-						<div class="main__content__controls__view">
-							<i class="fa fa-th-large" aria-hidden="true"></i><i class="fa fa-th-list selected" aria-hidden="true"></i>
-						</div>
-					</div>
-				</div>
-
-				<!-- cards -->
-				<div class="main__content__cards grid-pad">
-					<div class="main__content__cards__left col col-6-12">
-					</div>
-					<div class="main__content__cards__right col col-6-12">
-					</div>
-
-					<!-- source cards to clone -->
-					<div id="clone_card_1" class="main__content__card">
-						<div class="main__content__card__inner">
-							<div class="main__content__card__actions main__content__card__section">
-								<div class="checked circle">
-									<i class="fa fa-check" aria-hidden="true"></i>
-								</div>
-								<div class="heart">
-									<i class="fa fa-heart-o" aria-hidden="true"></i>
-								</div>
-							</div>
-							<div class="main__content__card__image main__content__card__section">
-								<i class="fa fa-file-image-o" aria-hidden="true"></i>
-							</div>
-							<div class="main__content__card__info main__content__card__section">
-								<div class="cd-title">Stuff That is Squishy</div>
-								<div class="cd-by" style="display:none"></div>
-								<div class="cd-from" >From: Biology Science</div>
-								<div class="cd-count" >25 Questions</div>
-								<div class="cd-reviews">
-									<div class="star-grp">
-										<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-									</div>
-									<span>(225)</span>
-									<span class="eye-action"><i class="fa fa-eye" aria-hidden="true"></i></span>
-								</div>
-							</div>
-							<div class="main__content__card__footer main__content__card__section">
-								<div class="main__content__card__footer__type">Quiz</div>
-								<div class="main__content__card__footer__file"><i class="fa fa-file icon-for-text" aria-hidden="true"></i>$34.99
-								</div>
-								<div class="main__content__card__footer__value"><i class="fa fa-laptop icon-for-text" aria-hidden="true"></i>5cr
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="clone_card_2" class="main__content__card">
-						<div class="main__content__card__inner">
-							<div class="main__content__card__actions inverse main__content__card__section">
-								<div class="checked circle">
-									<i class="fa fa-check" aria-hidden="true"></i>
-								</div>
-								<div class="heart">
-									<i class="fa fa-heart-o" aria-hidden="true"></i>
-								</div>
-							</div>
-							<div class="main__content__card__image main__content__card__section">
-								<i class="fa fa-file-image-o" aria-hidden="true"></i>
-							</div>
-							<div class="main__content__card__info main__content__card__section">
-								<div class="cd-title">How To Take Over The World in 5 Easy Steps</div>
-								<div class="cd-by">By: Bill Gates</div>
-								<div class="cd-from" >From: Harvard Business School</div>
-								<div class="cd-reviews">
-									<div class="star-grp">
-										<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-									</div>
-									<span>(2,232,325)</span>
-									<span class="eye-action"><i class="fa fa-eye" aria-hidden="true"></i></span>
-								</div>
-							</div>
-							<div class="main__content__card__abstract main__content__card__section">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.<br/><a href="#">See Abstract</a>
-							</div>
-							<div class="main__content__card__footer main__content__card__section">
-								<div class="main__content__card__footer__type">Business Case</div>
-								<div class="main__content__card__footer__file" style="display:none"><i class="fa fa-file icon-for-text" aria-hidden="true"></i>$34.99
-								</div>
-								<div class="main__content__card__footer__value"><i class="fa fa-laptop icon-for-text" aria-hidden="true"></i>$14.99
-								</div>
-							</div>
-						</div>
-					</div>
-					<div id="clone_card_3" class="main__content__card">
-						<div class="main__content__card__inner">
-							<div class="main__content__card__actions inverse main__content__card__section">
-								<div class="checked circle">
-									<i class="fa fa-check" aria-hidden="true"></i>
-								</div>
-								<div class="heart">
-									<i class="fa fa-heart-o" aria-hidden="true"></i>
-								</div>
-							</div>
-							<div class="main__content__card__image main__content__card__section">
-								<i class="fa fa-file-image-o" aria-hidden="true"></i>
-							</div>
-							<div class="main__content__card__info main__content__card__section">
-								<div class="cd-title">The Big Picture: I Am Therefore I Think</div>
-								<div class="cd-by" style="display:none"></div>
-								<div class="cd-from" >From: Psychological Services</div>
-								<div class="cd-reviews">
-									<div class="star-grp">
-										<i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-									</div>
-									<span>(225)</span>
-									<span class="eye-action"><i class="fa fa-eye" aria-hidden="true"></i></span>
-								</div>
-							</div>
-							<div class="main__content__card__footer main__content__card__section">
-								<div class="main__content__card__footer__type">Quiz</div>
-								<div class="main__content__card__footer__value"><i class="fa fa-laptop icon-for-text" aria-hidden="true"></i>5 Credits
-								</div>
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</section>
-		</div>
-
-		<!-- modal -->
-		<div class="modal trans">
-			<div class="modal__dialog">
-				<div class="modal__header">
-					Add a Resource
-					<a href="#" class="modal__close"><i class="fa fa-close"></i></a>
-					<div class="modal__body__steps">
-						<div class="modal__body__steps__bg"></div>
-						<div class="modal__body__step-indicator">
-							<span class="modal__body__step-indicator__step completed" href="#">Resource Information</span>
-							<span class="modal__body__step-indicator__step" href="#">Your information</span>
-							<span class="modal__body__step-indicator__step" href="#">Copyright Matching</span>
-							<span class="modal__body__step-indicator__step" href="#">Review &amp; Confirm</span>
-						</div>
-					</div>
-				</div>
-				<div class="modal__body grid">
-					<div class="modal__body__content1" role="radiogroups">
-						<div class="modal__body__content1__header col col-12-12">
-							<h1>About Adding Resources to your Content</h1>In order to use uploaded content, you must have all the necessary rights to do so... If you do not have these rights, we can help you acquire them. Please note that the certain Term of Service provisions apply to your uploaded materials.
-						</div>
-						<div class="modal__body__content1__subheader col col-12-12">
-							<h2>Do you have the content rights to this resource?</h2>
-						</div>
-						<div class="col col-6-12">
-							<div id="haverights" class="modal__body__content1__select" role="radio" aria-checked="false">
-								<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-								<span>Yes I have the necessary rights to upload and use the content.</span>
-								<div>
-									<i class="fa fa-check" aria-hidden="true"></i><span class='select-text'>Select</span>
-								</div>
-							</div>
-							<p><em>In order to use any uploaded material in your Digital Collection, <strong>YOU MUST HAVE ALL RIGHTS NECESSARY</strong> (meaning that you either have complete control of the copyrighted material OR you can demonstrate that you have been granted all necessay rights to use the material form the party that controls the copyright).</em></p>
-							<p><em>Please refer to the <a href="#">Terms of Use</a> and the <a href="#">U.S Copyright Office FAQ</a> for additional information</em></p>
-						</div>
-						<div class="col col-6-12">
-							<div id="needrights" class="modal__body__content1__select" role="radio" aria-checked="false">
-								<i class="fa fa-clock-o" aria-hidden="true"></i>
-								<span>No, I need assistance in obtaining the necessary rights.</span>
-								<div>
-									<i class="fa fa-check" aria-hidden="true"></i><span class='select-text'>Select</span>
-								</div>
-							</div>
-							<p><em>If you do not have all the necessary rights to upload and use this material in the Service, you will need to get such rights before using the material in your Digital Collections. If requested by you, we can attempt to obtain the necessary rights for you. Depending on the resource, there may be fees charged by the rights-holder to tuse it, which will be passed on to your students who purchase the Digital Collection(s). It <strong>may take up to 6 weeks</strong> or more in ordr to obtain these rights, if they are available. Clicking <strong>Next</strong> and inputting the necessar information on the next screen will allow us to better estimate these costs and lead times for you, but you are not obligatd to use the resource in any Digital Collections</em></p>
-						</div>
-					</div>
-					<div  class="modal__body__content2">
-						<aside class="col col-3-12">
-							<h2>Source Information Details</h2>
-							<div class="modal__body__content2__image">
-								<i class="fa fa-file-image-o" aria-hidden="true"></i>
-							</div>
-							<p>Lucas ipsum dolor sit amet moff kashyyyk palpatine wicket coruscant grievous solo fett tatooine alderaan. Maul yoda binks sith amidala grievous yoda maul. Skywalker mandalorians leia palpatine wookiee anakin.</p>
-						</aside>
-						<section class="col col-9-12">
-							<div class="modal__body__content2__panel">
-								<div class="modal__body__content2__panel__header"><h2>About your Resource<i class="fa fa-question-circle" aria-hidden="true"></i></h2></div>
-								<div class="modal__body__content2__panel__body">
-									<div class="prop resource-type">
-										<div class="prop__label">Resource Type</div>
-										<div class="prop__values">
-											<select class="prop__value">
-												<option selected disabled>Select one...</option>
-												<option>Green</option>
-												<option>Blue</option>
-												<option>Red</option>
-											</select>
-										</div>
-									</div>
-									<div class="prop file-info width100">
-										<div class="prop__label width100">File Information</div>
-										<div class="prop__values width100">
-											<select class="prop__value">
-												<option selected>URL</option>
-												<option>Green</option>
-												<option>Blue</option>
-												<option>Red</option>
-											</select>
-											<input type="text" class="prop__value flex-grow1" value="Enter URL" />
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="modal__body__content2__panel">
-								<div class="modal__body__content2__panel__header"><h2>Tell us Where you Found this Resource<i class="fa fa-question-circle" aria-hidden="true"></i></h2></div>
-								<div class="modal__body__content2__panel__body">
-									<div class="prop source-type">
-										<div class="prop__label">Source Type</div>
-										<div class="prop__values">
-											<select class="prop__value">
-												<option selected disabled>Book</option>
-												<option>Green</option>
-												<option>Blue</option>
-												<option>Red</option>
-											</select>
-										</div>
-									</div>
-									<div class="prop-row">
-										<div class="prop book-title flex-grow1">
-											<div class="prop__label">Book Title</div>
-											<div class="prop__values">
-												<input type="text" class="prop__value" value=""/>
-											</div>
-										</div>
-										<div class="prop pub-year">
-											<div class="prop__label">Publication Year</div>
-											<div class="prop__values">
-												<input type="text" class="prop__value" value=""/>
-											</div>
-										</div>
-									</div>
-									<div class="prop prim-auth flex-grow1">
-										<div class="prop__label">Primary Author</div>
-										<div class="prop__values">
-											<input type="text" class="prop__value fname" value="First"/>
-											<input type="text" class="prop__value mi flex-grow0" value="M.I."/>
-											<input type="text" class="prop__value lname" value="Last"/>
-										</div>
-									</div>
-									<div class="prop-row">
-										<div class="prop page-range">
-											<div class="prop__label">Page Number Range</div>
-											<div class="prop__values">
-												<input type="text" class="prop__value" value="5"/>
-												<span>to</span>
-												<input type="text" class="prop__value" value="5"/>
-											</div>
-										</div>
-										<div class="prop isbn flex-grow1">
-											<div class="prop__label">ISBN</div>
-											<div class="prop__values">
-												<input type="text" class="prop__value" value=""/>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-					</div>
-				</div>
-				<div class="modal__footer">
-					<div class="modal__footer__back__wrap hidden">
-						<button class="btn modal__footer__back">Back</button>
-					</div>
-					<button class="btn modal__footer__cancel">Cancel</button>
-					<button class="btn btn-primary modal__footer__next" disabled >Next</button>
-				</div>
+			<div class="prog">
+				<div class="body">Sample Step 3</div>
+				<div class="tip"></div>
 			</div>
 		</div>
-		<div class="modal__bg trans"></div>
+		<h1>User Experience Prototyper - Jonathan Elbom </h1>
+		<section>
+			<h2>Part 1</h2>
+			<h3>transformMe</h3>
+			<code>
+				var array1 = [3,1,4,5,2];<br/>
+				function transformMe( a ) {<br/>
+				<span class="tabbed comment">// sort a ascending numerically</span><br/>
+				<span class="tabbed"></span>a = a.sort();<br/>
+				<span class="tabbed comment">// return a, a reversed, and a. Array.prototype.reverse reverses in place (while sort and concat return a new array). make sure the reverse call is operating on a concatenated copy</span><br/>
+				<span class="tabbed">return a.concat( a.concat().reverse(), a );</span>
+				<br/>
+				}<br/>
+				array1 = transformMe(array1)<br/>
+    			console.log('array1:',array1);<br/>
+    			<span class="comment">// outputs array1: [1,2,3,4,5,5,4,3,2,1,1,2,3,4,5]</span><br/><br/>
+    			<button id="transMe">Run transformMe()</button>
+			</code>
+			<h3>bippittyboppityboop</h3>
+			<p>View: <a href="boop.html" target="_blank">bippittyboppityboop page</a>&nbsp;&nbsp;<span class="comment">[Warning] I had fun with this one. Note: the page will auto-scroll as the list is built./span></p>
+		</section>
+		<section>
+			<h2>Part 2</h2>
+			<h3>Prototype</h3>
+			<p>View: <a href="prototype.html" target="_blank">prototype experience</a>&nbsp;&nbsp;
+			<h4>Protoype UX notes:</h4>
+			<p>Since this is just a demonstration and was done on a shorter timeline (i got this exercise on fri 6/10), not all of these UX features are fully fleshed-out. They are there to show knowledge and consideration of good UX design principles and implementatin strategies.</p>
+			<ul>
+				<li>Screen elements adjust to window resize (e.g. scroll panels adjust to use fully designate heights, modal size adjust)</li>
+				<li>Scroll overflow shadow hints - independent shadow hints on top and bottom (if not bottom of page) of scroll panels to indicate more content</li>
+				<li>Grid system </li>
+				<li>Partially-responsive design. Container resizes for screen width, but grid columns do not collapse to 1 column at small width. Use of flexbox CSS allows for smart resizing of dynamic content layout</li>
+				<li>Body base font size and use of em allow for easy global relative adjustment of font size (use the font-size widget in the secondary header to try this out)</li>
+				<li>Body base font size and use of em allow for easy global relative adjustment of font size (use the font-size widget in the secondary header to try this out)</li>
+				<li>CSS transitions for UX hints and enhance experience: active non-button buttons have transitions, modal has transitions</li>
+				<li>Clone html 'template' elements for card pane. Using just 3 card templates, I created an area full with content</li>
+			</ul>
+		</section>
+		
 
-		<script type="text/javascript" src="js/main.js"></script>
+		<script>
+			(function(window){
+				function transformMe( a ) {
+					// sort a ascending numerically
+					a = a.sort();
+					// return a, a reversed, and a. Array.prototype.reverse reverses in place (while sort and concat return a new array),
+					// make sure the reverse call is operating on a concatenated copy
+					return a.concat( a.concat().reverse(), a );
+				}
+				document.querySelector('#transMe').addEventListener('click', function() {
+					alert( 'transformMe( [3,1,4,5,2] ): '+transformMe([3,1,4,5,2]) );	
+				});
+			})(window);
+		</script>
 	</body>
 </html>

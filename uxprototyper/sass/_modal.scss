@@ -56,7 +56,8 @@
 	background-color: #fff;
 	&.progress {
 		.modal__header {
-			height: $modal-header-footer-height + $progress-indicator-height;
+			height: $modal-header-footer-height + $progress-indicator-height + 2;
+			overflow-x: hidden;
 		}
 		.modal__body {
 		 	height: calc(100% - (2 * #{$modal-header-footer-height} + #{$progress-indicator-height}) );
