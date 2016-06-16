@@ -1,16 +1,10 @@
-@keyframes fill {
-  to {
-    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-  }
-}
-/* line 18, ../sass/main.scss */
+/* line 12, ../sass/main.scss */
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-/* line 21, ../sass/main.scss */
+/* line 15, ../sass/main.scss */
 html, body {
   font-family: 'Open Sans', sans-serif;
   background-color: #ddd;
@@ -19,14 +13,14 @@ html, body {
   font-size: 16px;
 }
 
-/* line 28, ../sass/main.scss */
+/* line 22, ../sass/main.scss */
 body {
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
 }
 
-/* line 31, ../sass/main.scss */
+/* line 25, ../sass/main.scss */
 .card {
   width: 613px;
   height: 523px;
@@ -42,7 +36,7 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* line 40, ../sass/main.scss */
+/* line 34, ../sass/main.scss */
 .heart {
   position: absolute;
   z-index: 4;
@@ -56,36 +50,39 @@ body {
   cursor: pointer;
 }
 
-/* line 52, ../sass/main.scss */
+/* line 46, ../sass/main.scss */
 .heart-solid {
   position: relative;
   color: #0067db;
   top: -33px;
   clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
   -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  -webkit-transition: all 0.75s ease;
+  -moz-transition: all 0.75s ease;
+  -o-transition: all 0.75s ease;
+  -ms-transition: all 0.75s ease;
+  transition: all 0.75s ease;
 }
-/* line 57, ../sass/main.scss */
+/* line 52, ../sass/main.scss */
 .heart-solid.full {
-  -moz-animation: fill 0.75s ease forwards;
-  -webkit-animation: fill 0.75s ease forwards;
-  -ms-animation: fill 0.75s ease forwards;
-  animation: fill 0.75s ease forwards;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-/* line 61, ../sass/main.scss */
+/* line 56, ../sass/main.scss */
 .heart-outline {
-  -webkit-transition: color 0.5s ease-out;
-  -moz-transition: color 0.5s ease-out;
-  -o-transition: color 0.5s ease-out;
-  -ms-transition: color 0.5s ease-out;
-  transition: color 0.5s ease-out;
+  -webkit-transition: color 0.5s ease;
+  -moz-transition: color 0.5s ease;
+  -o-transition: color 0.5s ease;
+  -ms-transition: color 0.5s ease;
+  transition: color 0.5s ease;
 }
-/* line 63, ../sass/main.scss */
+/* line 58, ../sass/main.scss */
 .heart-outline.clicked {
   color: #0067db;
 }
 
-/* line 67, ../sass/main.scss */
+/* line 62, ../sass/main.scss */
 .checkbox {
   height: 24px;
   width: 24px;
@@ -104,19 +101,19 @@ body {
   -ms-transition: border-radius 0.75s ease;
   transition: border-radius 0.75s ease;
 }
-/* line 77, ../sass/main.scss */
+/* line 72, ../sass/main.scss */
 .checkbox.checked {
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   border-radius: 12px;
 }
-/* line 79, ../sass/main.scss */
+/* line 74, ../sass/main.scss */
 .checkbox.checked .checkmark > .check {
   stroke-dashoffset: 0;
 }
 
-/* line 84, ../sass/main.scss */
+/* line 79, ../sass/main.scss */
 .checkmark {
   width: 24px;
   height: 24px;
@@ -125,26 +122,26 @@ body {
   stroke-linecap: round;
 }
 
-/* line 91, ../sass/main.scss */
+/* line 86, ../sass/main.scss */
 .check {
   transform-origin: 50% 50%;
   stroke-dasharray: 48;
   stroke-dashoffset: 48;
-  -webkit-transition: stroke-dashoffset 0.75s ease;
-  -moz-transition: stroke-dashoffset 0.75s ease;
-  -o-transition: stroke-dashoffset 0.75s ease;
-  -ms-transition: stroke-dashoffset 0.75s ease;
-  transition: stroke-dashoffset 0.75s ease;
+  -webkit-transition: stroke-dashoffset 0.75s linear;
+  -moz-transition: stroke-dashoffset 0.75s linear;
+  -o-transition: stroke-dashoffset 0.75s linear;
+  -ms-transition: stroke-dashoffset 0.75s linear;
+  transition: stroke-dashoffset 0.75s linear;
 }
 
-/* line 97, ../sass/main.scss */
+/* line 92, ../sass/main.scss */
 .card-step {
   position: absolute;
   top: 0;
   width: 100%;
 }
 
-/* line 102, ../sass/main.scss */
+/* line 97, ../sass/main.scss */
 .rental {
   z-index: 3;
   width: 100%;
@@ -156,13 +153,13 @@ body {
   -ms-transition: opacity 1s ease;
   transition: opacity 1s ease;
 }
-/* line 108, ../sass/main.scss */
+/* line 103, ../sass/main.scss */
 .rental.out {
   opacity: 0;
   pointer-events: none;
 }
 
-/* line 113, ../sass/main.scss */
+/* line 108, ../sass/main.scss */
 .favorites {
   z-index: 2;
   width: 100%;
@@ -174,24 +171,24 @@ body {
   -ms-transition: opacity 0.5s 0.35s ease;
   transition: opacity 0.5s 0.35s ease;
 }
-/* line 119, ../sass/main.scss */
+/* line 114, ../sass/main.scss */
 .favorites.in {
   opacity: 1;
 }
-/* line 121, ../sass/main.scss */
+/* line 116, ../sass/main.scss */
 .favorites.in > .title {
   top: 110px;
 }
-/* line 122, ../sass/main.scss */
+/* line 117, ../sass/main.scss */
 .favorites.in > .row {
   top: 194px;
 }
-/* line 123, ../sass/main.scss */
+/* line 118, ../sass/main.scss */
 .favorites.in > .create-list {
   top: 260px;
 }
 
-/* line 127, ../sass/main.scss */
+/* line 122, ../sass/main.scss */
 .fav-slice {
   position: absolute;
   background-image: url("../img/favorites.png");
@@ -203,14 +200,14 @@ body {
   transition: top 1.2s 0.25s ease;
 }
 
-/* line 133, ../sass/main.scss */
+/* line 128, ../sass/main.scss */
 .title {
   height: 35px;
   background-position: 0px -110px;
   top: 140px;
 }
 
-/* line 138, ../sass/main.scss */
+/* line 133, ../sass/main.scss */
 .row {
   height: 40px;
   background-position: 0px -249px;
@@ -218,7 +215,7 @@ body {
   top: 254px;
 }
 
-/* line 144, ../sass/main.scss */
+/* line 139, ../sass/main.scss */
 .create-list {
   height: 84px;
   background-position: 0px -313px;

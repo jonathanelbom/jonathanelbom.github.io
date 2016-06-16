@@ -7,10 +7,8 @@
 	var favorites = document.querySelector('.favorites');
 	var rental = document.querySelector('.rental');
 
-	// on heart click, go to step 2
 	heart.addEventListener('click', gotoStep2);
-	// on checkbox click, add to favorites
-	checkbox.addEventListener('click', checkboxClicked);
+	checkbox.addEventListener('click', toggleCheckbox);
 
 	function gotoStep2() {
 		heartOutline.classList.add('clicked');
@@ -18,9 +16,17 @@
 		favorites.classList.add('in');
 	}
 
-	function checkboxClicked() {
-		checkbox.classList.add('checked');
-		heartSolid.classList.add('full');
+	function toggleCheckbox() {
+		var checked = checkbox.dataset.checked === 'true';
+		if ( !checked ) { // set state to checked
+			checkbox.classList.add('checked');
+			heartSolid.classList.add('full');
+		} else { // set state to unchecked
+			checkbox.classList.remove('checked');
+			heartSolid.classList.remove('full');
+		}
+		// set checkbox checked data-attribute to updated state
+		checkbox.dataset.checked = !checked;
 	}
 
 })();

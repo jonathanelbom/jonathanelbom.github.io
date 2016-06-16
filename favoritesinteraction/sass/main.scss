@@ -9,12 +9,6 @@ $startOffsetY: 30px;
 $spacing: 30px;
 $check-trans-time: 0.75s;
 
-@keyframes fill {
-	to {
-		@include clip-path( polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%) );
-	}
-}
-
 * {
 	@include box-sizing(border-box);
 }
@@ -54,12 +48,13 @@ body {
 	color: $blue;
 	top: -33px;
 	@include clip-path( polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%) );
+	@include transition(all $check-trans-time ease);
 	&.full {
-		@include animation( fill $check-trans-time ease forwards);
+		@include clip-path( polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%) );
 	}
 }
 .heart-outline {
-	@include transition(color 0.5s ease-out);
+	@include transition(color 0.5s ease);
 	&.clicked {
 		color: $blue;
 	}
@@ -92,7 +87,7 @@ body {
 	transform-origin: 50% 50%;
 	stroke-dasharray: 48;
 	stroke-dashoffset: 48;
- 	@include transition(stroke-dashoffset $check-trans-time ease);
+ 	@include transition(stroke-dashoffset $check-trans-time linear);
 }
 .card-step {
 	position: absolute;
