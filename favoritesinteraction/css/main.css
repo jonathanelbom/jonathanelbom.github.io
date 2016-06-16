@@ -1,0 +1,227 @@
+@keyframes fill {
+  to {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    -webkit-clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+/* line 18, ../sass/main.scss */
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 21, ../sass/main.scss */
+html, body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #ddd;
+  color: #231F20;
+  height: 100%;
+  font-size: 16px;
+}
+
+/* line 28, ../sass/main.scss */
+body {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+/* line 31, ../sass/main.scss */
+.card {
+  width: 613px;
+  height: 523px;
+  margin: auto;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  position: relative;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* line 40, ../sass/main.scss */
+.heart {
+  position: absolute;
+  z-index: 4;
+  font-size: 1.5em;
+  bottom: 3px;
+  left: 15px;
+  color: #232323;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+
+/* line 52, ../sass/main.scss */
+.heart-solid {
+  position: relative;
+  color: #0067db;
+  top: -33px;
+  clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+  -webkit-clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+}
+/* line 57, ../sass/main.scss */
+.heart-solid.full {
+  -moz-animation: fill 0.75s ease forwards;
+  -webkit-animation: fill 0.75s ease forwards;
+  -ms-animation: fill 0.75s ease forwards;
+  animation: fill 0.75s ease forwards;
+}
+
+/* line 61, ../sass/main.scss */
+.heart-outline {
+  -webkit-transition: color 0.5s ease-out;
+  -moz-transition: color 0.5s ease-out;
+  -o-transition: color 0.5s ease-out;
+  -ms-transition: color 0.5s ease-out;
+  transition: color 0.5s ease-out;
+}
+/* line 63, ../sass/main.scss */
+.heart-outline.clicked {
+  color: #0067db;
+}
+
+/* line 67, ../sass/main.scss */
+.checkbox {
+  height: 24px;
+  width: 24px;
+  left: 116px;
+  top: 7px;
+  border: 2px solid #0067db;
+  position: relative;
+  cursor: pointer;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  border-radius: 0;
+  -webkit-transition: border-radius 0.75s ease;
+  -moz-transition: border-radius 0.75s ease;
+  -o-transition: border-radius 0.75s ease;
+  -ms-transition: border-radius 0.75s ease;
+  transition: border-radius 0.75s ease;
+}
+/* line 77, ../sass/main.scss */
+.checkbox.checked {
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  border-radius: 12px;
+}
+/* line 79, ../sass/main.scss */
+.checkbox.checked .checkmark > .check {
+  stroke-dashoffset: 0;
+}
+
+/* line 84, ../sass/main.scss */
+.checkmark {
+  width: 24px;
+  height: 24px;
+  stroke-width: 5;
+  stroke: #0067db;
+  stroke-linecap: round;
+}
+
+/* line 91, ../sass/main.scss */
+.check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  -webkit-transition: stroke-dashoffset 0.75s ease;
+  -moz-transition: stroke-dashoffset 0.75s ease;
+  -o-transition: stroke-dashoffset 0.75s ease;
+  -ms-transition: stroke-dashoffset 0.75s ease;
+  transition: stroke-dashoffset 0.75s ease;
+}
+
+/* line 97, ../sass/main.scss */
+.card-step {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+/* line 102, ../sass/main.scss */
+.rental {
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/rental.png");
+  -webkit-transition: opacity 1s ease;
+  -moz-transition: opacity 1s ease;
+  -o-transition: opacity 1s ease;
+  -ms-transition: opacity 1s ease;
+  transition: opacity 1s ease;
+}
+/* line 108, ../sass/main.scss */
+.rental.out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* line 113, ../sass/main.scss */
+.favorites {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s 0.35s ease;
+  -moz-transition: opacity 0.5s 0.35s ease;
+  -o-transition: opacity 0.5s 0.35s ease;
+  -ms-transition: opacity 0.5s 0.35s ease;
+  transition: opacity 0.5s 0.35s ease;
+}
+/* line 119, ../sass/main.scss */
+.favorites.in {
+  opacity: 1;
+}
+/* line 121, ../sass/main.scss */
+.favorites.in > .title {
+  top: 110px;
+}
+/* line 122, ../sass/main.scss */
+.favorites.in > .row {
+  top: 194px;
+}
+/* line 123, ../sass/main.scss */
+.favorites.in > .create-list {
+  top: 260px;
+}
+
+/* line 127, ../sass/main.scss */
+.fav-slice {
+  position: absolute;
+  background-image: url("../img/favorites.png");
+  width: 100%;
+  -webkit-transition: top 1.2s 0.25s ease;
+  -moz-transition: top 1.2s 0.25s ease;
+  -o-transition: top 1.2s 0.25s ease;
+  -ms-transition: top 1.2s 0.25s ease;
+  transition: top 1.2s 0.25s ease;
+}
+
+/* line 133, ../sass/main.scss */
+.title {
+  height: 35px;
+  background-position: 0px -110px;
+  top: 140px;
+}
+
+/* line 138, ../sass/main.scss */
+.row {
+  height: 40px;
+  background-position: 0px -249px;
+  background-image: url("../img/favorites.png");
+  top: 254px;
+}
+
+/* line 144, ../sass/main.scss */
+.create-list {
+  height: 84px;
+  background-position: 0px -313px;
+  background-image: url("../img/favorites.png");
+  top: 350px;
+}

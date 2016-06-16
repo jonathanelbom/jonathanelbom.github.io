@@ -1,0 +1,43 @@
+@mixin clip-path( $path ) {
+  clip-path: $path;
+  -webkit-clip-path: $path
+}
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+  -moz-transition: $transition;
+  -o-transition: $transition;
+  -ms-transition: $transition;
+  transition: $transition;
+}
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+@mixin preserve-3d {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+@mixin box-shadow( $shadow ) {
+    -webkit-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+@mixin box-sizing( $box-sizing ) {
+    -webkit-box-sizing: $box-sizing;
+    box-sizing: $box-sizing;
+}
+@mixin animation($animation) {
+    -moz-animation:$animation;
+    -webkit-animation:$animation;
+    -ms-animation:$animation;
+    animation:$animation;
+}
