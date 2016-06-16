@@ -2,7 +2,7 @@
 
 	var checkbox = document.querySelector('.checkbox');
 	var heart = document.querySelector('.heart');
-	var heartOutline = heart.querySelector('.fa-heart-o');
+	//var heartOutline = heart.querySelector('.fa-heart-o');
 	var heartSolid = heart.querySelector('.fa-heart');
 	var favorites = document.querySelector('.favorites');
 	var rental = document.querySelector('.rental');
@@ -11,7 +11,7 @@
 	checkbox.addEventListener('click', toggleCheckbox);
 
 	function gotoStep2() {
-		heartOutline.classList.add('clicked');
+		heart.classList.add('clicked');
 		rental.classList.add('out');
 		favorites.classList.add('in');
 	}

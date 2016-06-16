@@ -7,7 +7,7 @@ $blue: #0067db;
 $gray: #231F20;
 $startOffsetY: 30px;
 $spacing: 30px;
-$check-trans-time: 0.75s;
+$check-trans-time: 0.5s;
 
 * {
 	@include box-sizing(border-box);
@@ -22,15 +22,7 @@ html, body {
 body {
 	@include preserve-3d();
 }
-.card {
-	width:613px;
-	height: 523px;
-	margin: auto;
-	@include vertical-align();
-	position: relative;
-	background-color: #fff;
-	@include box-shadow(0 2px 8px rgba(0,0,0,0.2));
-}
+// ------------ heart widget ------------
 .heart {
 	position: absolute;
 	z-index: 4;
@@ -42,23 +34,32 @@ body {
     height: 40px;
     text-align: center;
     cursor: pointer;
+    &.clicked {
+    	pointer-events: none;
+    	> .heart-outline{
+			color: $blue;
+		}
+    }
 }
 .heart-solid {
-	position: relative;
+	position: absolute;
 	color: $blue;
-	top: -33px;
+	top: 5px;
+	left: 8px;
 	@include clip-path( polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%) );
+	// fallback for browsers that don't support clip-path
+	clip: rect( 24px 24px 24px -1px);
 	@include transition(all $check-trans-time ease);
 	&.full {
 		@include clip-path( polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%) );
+		// fallback for browsers that don't support clip-path
+		clip: rect( 0px 24px 24px -1px);
 	}
 }
 .heart-outline {
 	@include transition(color 0.5s ease);
-	&.clicked {
-		color: $blue;
-	}
 }
+// ------------ checkbox widget ------------
 .checkbox {
 	height: 24px;
 	width: 24px;
@@ -86,14 +87,26 @@ body {
 .check {
 	transform-origin: 50% 50%;
 	stroke-dasharray: 48;
-	stroke-dashoffset: 48;
+	stroke-dashoffset: 50;
  	@include transition(stroke-dashoffset $check-trans-time linear);
 }
+// ------------ card ------------
+.card {
+	width:613px;
+	height: 523px;
+	margin: auto;
+	@include vertical-align();
+	position: relative;
+	background-color: #fff;
+	@include box-shadow(0 2px 8px rgba(0,0,0,0.2));
+}
+// ------------ card content (steps) ------------
 .card-step {
 	position: absolute;
 	top: 0;
 	width: 100%;
 }
+// ------------ card content (step 1: property) ------------
 .rental {
 	z-index: 3;
 	width: 100%;
@@ -105,6 +118,7 @@ body {
 		pointer-events: none;
 	}
 }
+// ------------ card content (step 2: favorites) ------------
 .favorites {
 	z-index: 2;
 	width:100%;
@@ -123,7 +137,7 @@ body {
 	position: absolute;
 	background-image: url('../img/favorites.png');
 	width: 100%;
-	@include transition(top 1.2s 0.25s ease);
+	@include transition(top 1s 0.25s ease);
 }
 .title {
 	height: 35px;
