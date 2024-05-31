@@ -6,6 +6,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+ul {
+  margin: 0;
+  list-style-type: none;
+}
 .Portfolio__resume-wrapper {
   display: flex;
   align-items: center;
@@ -95,7 +99,7 @@ body {
 }
 
 .Portfolio__toc {
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
   padding: 300px 0 0;
   position: relative;
@@ -105,8 +109,22 @@ body {
   background-color: #fff;
   position: relative;
 }
+
+.Portfolio__section__title {
+  font-size: 24px;
+  margin-block-end: 4px;
+}
+
 .Portfolio__section > p {
     margin-bottom: 32px;
+}
+.Portfolio__section > li {
+  margin-block-end: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  row-gap: 4px;
 }
 .Portfolio__section > p.Portfolio__work {
   margin-bottom: 4px;
@@ -115,6 +133,10 @@ body {
   margin-bottom: 32px;
   padding: 4px;
   display: inline-block;
+}
+.Portfolio__section__image {
+  height: 120px;
+  width: 120px;
 }
 .Portfolio__images {
  display: flex;
@@ -202,9 +224,9 @@ body {
     opacity: 1;
   }
 .Portfolio__toc a {
-    margin-bottom: 56px;
+    /* margin-bottom: 56px; */
     color: #8a1b12;
     font-weight: 700;
     font-size: 18px;
-    margin-left: -4px;
+    /* smargin-left: -4px; */
 }
