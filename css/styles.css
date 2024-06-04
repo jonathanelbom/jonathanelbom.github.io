@@ -57,6 +57,7 @@ ul {
 
 .Portfolio__header {
   background-color: #f5f4f3;
+  /* background-color: #e5e4e3; */
   /* padding: 0 40px; */
   display: flex;
   flex-flow: column;
@@ -65,13 +66,40 @@ ul {
   position: sticky;
   /* position: fixed; */
   padding-inline: 20px;
-  padding-block: 48px;
+  /* padding-block: 56px; */
   width: 100%;
   top: 0;
 }
 
-.Portfolio__header-content {
+/* main::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url('../images/bg.png');
+  opacity: .05;
+  background-size: cover;
+  background-position: center;
+} */
 
+.Portfolio__header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* background-image: url('../images/bg.png'); */
+  background-image: url('../images/bg-2.webp');
+  filter: grayscale(100%);
+  opacity: .15;
+  background-size: cover;
+  background-position: center;
+}
+
+.Portfolio__header-content {
+  z-index: 0;
+  position: relative;
+  padding-block: 56px;
+}
+
+.Portfolio__header-content::before {
 }
 
 .Portfolio__header-content-top {
@@ -139,9 +167,18 @@ ul {
   position: relative;
 }
 .Portfolio__section {
-  padding: 40px 40px 0;
+  /* padding: 40px 40px 0; */
+  padding: 40px;
+  padding-block-end: 56px;
   background-color: #fff;
   position: relative;
+  /* display: flex;
+  flex-direction: column;
+  row-gap: 24px; */
+}
+
+.Portfolio__section > hr {
+  margin-block: 40px;
 }
 
 .Portfolio__section__title {
@@ -153,7 +190,7 @@ ul {
     margin-bottom: 32px;
 }
 .Portfolio__section > li {
-  margin-block-end: 56px;
+  /* padding-block-end: 56px; */
   display: flex;
   /* flex-direction: column; */
   justify-content: flex-start;
@@ -272,7 +309,7 @@ ul {
   flex-wrap: wrap;
 }
 .Portfolio__wrapper {
-    padding-bottom: 64px;
+    /* padding-bottom: 64px; */
     position: relative;
     background-color: #fff;
 }
@@ -283,9 +320,9 @@ ul {
     left: 0;
     right: 0;
     bottom: 0;
-    box-shadow: 0 -2px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 016px 60px rgba(0, 0, 0, 0.15);
     opacity: 0;
-    transition: opacity 0.1s ease;
+    transition: opacity 300ms ease;
   }
   .Portfolio__wrapper.scrolled::before {
     opacity: 1;

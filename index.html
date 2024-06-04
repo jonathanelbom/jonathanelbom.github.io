@@ -41,6 +41,7 @@
                     <div class="Portfolio__wrapper">
                         <ul class="Portfolio__section">
                             <p style="font-size: 18px;">This is a collection of side projects that reside in my GitHub repo.</p>
+                            <hr/>
                             <li>
                                 <img class="Portfolio__header-image" src="./images/dotz.png" />
                                 <div>
@@ -54,6 +55,7 @@
                                     </div>
                                 </div>
                             </li>
+                            <hr />
                             <li>
                                 <img class="Portfolio__header-image" src="./images/factor-that.png" />
                                 <div>
@@ -67,6 +69,7 @@
                                     </div>
                                 </div>
                             </li>
+                            <hr />
                             <li>
                                 <img class="Portfolio__header-image" src="./images/mental-modeler.png" />
                                 <div>
@@ -81,6 +84,7 @@
                                     </div>
                                 </div>
                             </li>
+                            <hr />
                             <li>
                                 <img class="Portfolio__header-image" src="./images/friday-night-jamz.png" />
                                 <div>
@@ -94,6 +98,7 @@
                                     </div>
                                 </div>
                             </li>
+                            <hr />
                             <li>
                                 <img class="Portfolio__header-image" src="./images/psu-focos.png" />
                                 <div>
@@ -107,6 +112,7 @@
                                     </div>
                                 </div>
                             </li>
+                            <hr />
                             <li>
                                 <img class="Portfolio__header-image" src="./images/countdown.png" />
                                 <div>
@@ -120,7 +126,7 @@
                                     </div>
                                 </div>
                             </li>
-                            
+                            <hr />
                             <li>
                                 <img class="Portfolio__header-image" src="./images/search.png" />
                                 <div>
@@ -150,7 +156,7 @@
                 window.addEventListener("scroll", function (e) {
                     var scrollTop = document.documentElement.scrollTop;
                     headerContent.style.transform = `translateY(${
-                        scrollTop >= 0 ? -scrollTop * 0.5 : 0
+                        scrollTop >= 0 ? -scrollTop * 0.35 : 0
                     }px)`;
                     var hasScrolled = wrapper.classList.contains("scrolled");
                     if (scrollTop > 0 && !hasScrolled) {
