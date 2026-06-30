@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -m http.server 8000 > /tmp/server.log 2>&1 &)",
+      "Bash(python3 -m http.server 8000)",
+      "Bash(curl -s http://localhost:8000/index.html)",
+      "Bash(node --check index.html)"
+    ],
+    "additionalDirectories": [
+      "/tmp"
+    ]
+  }
+}

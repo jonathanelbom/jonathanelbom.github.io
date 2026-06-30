@@ -39,107 +39,9 @@
                 </header>
                 <main class="Portfolio__toc">
                     <div class="Portfolio__wrapper">
-                        <ul class="Portfolio__section">
+                        <ul class="Portfolio__section" id="projects-list">
                             <p style="font-size: 18px;">This is a collection of side projects that reside in my GitHub repo.</p>
                             <hr/>
-                            <li>
-                                <img class="Portfolio__header-image" src="./images/dotz.png" />
-                                <div>
-                                    <div class="Portfolio__section__title">
-                                        Dotz
-                                    </div>
-                                    <div>A retro smash the dots game and an exercise in vanilla js. It's best on your phone</div>
-                                    <div class="Portfolio__section__links">
-                                        <a href="https://jonathanelbom.github.io/dotz/" target="_blank">Launch Dotz</a>
-                                        <a href="https://github.com/jonathanelbom/dotz" target="_blank"><i>View source on github</i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr />
-                            <li>
-                                <img class="Portfolio__header-image" src="./images/factor-that.png" />
-                                <div>
-                                    <div class="Portfolio__section__title">
-                                        FactorTHAT
-                                    </div>
-                                    <div>Once I built a factoring tree in Actionscript. Now I built a factoring tree in Javascript.</div>
-                                    <div class="Portfolio__section__links">
-                                        <a href="https://jonathanelbom.github.io/factoring/" target="_blank">Launch FactorTHAT</a>
-                                        <a href="https://github.com/jonathanelbom/factoring" target="_blank"><i>View source on github</i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr />
-                            <li>
-                                <img class="Portfolio__header-image" src="./images/mental-modeler.png" />
-                                <div>
-                                    <div class="Portfolio__section__title">
-                                        Mental Modeler
-                                    </div>
-                                    <div>A fuzzy logic cognitive mapping web app I built with my prof buddy.</div>
-                                    <div class="Portfolio__section__links">
-                                        <a href="https://mentalmodeler.github.io/mentalmodeler-js/" target="_blank">Launch Mental Modeler</a>
-                                        <a href="https://github.com/mentalmodeler" target="_blank"><i>View source on github</i></a>
-                                        <!-- <a href="https://dev.mentalmodeler.com/" target="_blank">Launch suite (desktop only)</a> -->
-                                    </div>
-                                </div>
-                            </li>
-                            <hr />
-                            <li>
-                                <img class="Portfolio__header-image" src="./images/friday-night-jamz.png" />
-                                <div>
-                                    <div class="Portfolio__section__title">
-                                        Friday Night Jamz
-                                    </div>
-                                    <div>We jammed on fridays so I archived it.</div>
-                                    <div class="Portfolio__section__links">
-                                        <a href="https://jonathanelbom.github.io/fridaynightjamz/" target="_blank">Launch Friday Night Jamz</a>
-                                        <a href="https://github.com/jonathanelbom/fridaynightjamz" target="_blank"><i>View source on github</i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr />
-                            <li>
-                                <img class="Portfolio__header-image" src="./images/psu-focos.png" />
-                                <div>
-                                    <div class="Portfolio__section__title">
-                                        PSU Focos
-                                    </div>
-                                    <div>I did UX consulting and some interface prototyping for Portland State University.</div>
-                                    <div class="Portfolio__section__links">
-                                        <a href="https://jonathanelbom.github.io/psu-focos/" target="_blank">Launch PSU Focus flow prototype</a>
-                                        <a href="https://github.com/jonathanelbom/psu-focos" target="_blank"><i>View source on github</i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr />
-                            <li>
-                                <img class="Portfolio__header-image" src="./images/countdown.png" />
-                                <div>
-                                    <div class="Portfolio__section__title">
-                                        Countdown Timer
-                                    </div>
-                                    <div>This was a UX demo to design and build a countdown timer.</div>
-                                    <div class="Portfolio__section__links">
-                                        <a href="https://jonathanelbom.github.io/countdown-timer/" target="_blank">Launch Countdown Timer</a>
-                                        <a href="https://github.com/jonathanelbom/countdown-timer" target="_blank"><i>View source on github</i></a>
-                                    </div>
-                                </div>
-                            </li>
-                            <hr />
-                            <li>
-                                <img class="Portfolio__header-image" src="./images/search.png" />
-                                <div>
-                                    <div class="Portfolio__section__title">
-                                        Search
-                                    </div>
-                                    <div>Motion and interaction demo for doggie search experience.</div>
-                                    <div class="Portfolio__section__links">
-                                        <a href="https://jonathanelbom.github.io/ux-demo/" target="_blank">Launch Search demo</a>
-                                        <a href="https://github.com/jonathanelbom/ux-demo" target="_blank"><i>View source on github</i></a>
-                                    </div>
-                                </div>
-                            </li>  
                         </ul>
                     </div>
                 </main>
@@ -147,6 +49,107 @@
         </div>
         <script type="text/javascript">
             !(function () {
+                var projects = [
+                    {
+                        image: './images/bedtime.png',
+                        title: 'Bedtime',
+                        tech: 'Nuxt4 | OpenAI API | Tailwind CSS',
+                        description: 'An AI rhythm-section consultant for bedroom music makers — you describe a vibe and the AI streams back personalized production guidance for drums, bass, keys, guitar, and more.',
+                        links: [
+                            { label: 'Launch Bedtime', url: 'https://bedtime-zeta.vercel.app/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/bedtime', italic: true }
+                        ]
+                    },
+                    {
+                        image: './images/mental-modeler.png',
+                        title: 'Mental Modeler',
+                        tech: 'React + Redux | LESS CSS | Embeddable JS API',
+                        description: 'Interactive concept mapping tool using fuzzy logic to model complex relationships and ideas. Built with a professor collaborator to explore nuanced reasoning.',
+                        links: [
+                            { label: 'Launch Mental Modeler', url: 'https://mentalmodeler.github.io/mentalmodeler-js/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/mentalmodeler', italic: true }
+                        ]
+                    },    
+                    {
+                        image: './images/dotz.png',
+                        title: 'Dotz',
+                        tech: 'Vanilla JS | CSS GPU Acceleration | OOP Entity System',
+                        description: 'Smash falling dots for points in this retro-inspired tap game. Quick, addictive mobile gameplay.',
+                        links: [
+                            { label: 'Launch Dotz', url: 'https://jonathanelbom.github.io/dotz/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/dotz', italic: true }
+                        ]
+                    },
+                    {
+                        image: './images/factor-that.png',
+                        title: 'FactorTHAT',
+                        description: 'Once I built a factoring tree in Actionscript. Now I built a factoring tree in Javascript.',
+                        links: [
+                            { label: 'Launch FactorTHAT', url: 'https://jonathanelbom.github.io/factoring/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/factoring', italic: true }
+                        ]
+                    },
+                    {
+                        image: './images/friday-night-jamz.png',
+                        title: 'Friday Night Jamz',
+                        description: 'We jammed on fridays so I archived it.',
+                        links: [
+                            { label: 'Launch Friday Night Jamz', url: 'https://jonathanelbom.github.io/fridaynightjamz/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/fridaynightjamz', italic: true }
+                        ]
+                    },
+                    {
+                        image: './images/psu-focos.png',
+                        title: 'PSU Focos',
+                        description: 'I did UX consulting and some interface prototyping for Portland State University.',
+                        links: [
+                            { label: 'Launch PSU Focus flow prototype', url: 'https://jonathanelbom.github.io/psu-focos/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/psu-focos', italic: true }
+                        ]
+                    },
+                    {
+                        image: './images/countdown.png',
+                        title: 'Countdown Timer',
+                        description: 'This was a UX demo to design and build a countdown timer.',
+                        links: [
+                            { label: 'Launch Countdown Timer', url: 'https://jonathanelbom.github.io/countdown-timer/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/countdown-timer', italic: true }
+                        ]
+                    },
+                    {
+                        image: './images/search.png',
+                        title: 'Search',
+                        description: 'Motion and interaction demo for doggie search experience.',
+                        links: [
+                            { label: 'Launch Search demo', url: 'https://jonathanelbom.github.io/ux-demo/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/ux-demo', italic: true }
+                        ]
+                    }
+                ];
+
+                function renderProjects(projectList) {
+                    return projectList.map(function(p, i) {
+                        var linksHtml = p.links.map(function(link) {
+                            var label = link.italic ? `<i>${link.label}</i>` : link.label;
+                            return `<a href="${link.url}" target="_blank">${label}</a>`;
+                        }).join('\n');
+                        return `${i > 0 ? '<hr />' : ''}<li>
+  <img class="Portfolio__header-image" src="${p.image}" />
+  <div>
+    <div class="Portfolio__section__title">${p.title}</div>
+    ${p.tech ? `<div class="Portfolio__section__tech">${p.tech}</div>` : ''}
+    <div>${p.description}</div>
+    <div class="Portfolio__section__links">
+      ${linksHtml}
+    </div>
+  </div>
+</li>`;
+                    }).join('\n');
+                }
+
+                var projectsList = document.getElementById('projects-list');
+                projectsList.innerHTML += renderProjects(projects);
+
                 var wrapper = document.querySelector(".Portfolio__wrapper");
                 var header = document.querySelector(".Portfolio__header");
                 var headerContent = document.querySelector(
