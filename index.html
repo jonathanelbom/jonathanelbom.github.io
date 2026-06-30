@@ -30,7 +30,7 @@
                                 <h2>Craft meets Code</h2>
                             </div>
                         </div>
-                        <p>
+                        <p style="text-wrap: pretty;">
                             Design intuition paired with engineering depth - an eye for motion, interaction, and the details that matter.
                         </p>
                     </div>
@@ -38,10 +38,9 @@
                 <main class="Portfolio__toc">
                     <div class="Portfolio__wrapper">
                         <ul class="Portfolio__section" id="projects-list">
-                            <p style="font-size: 18px; text-align: center; margin-block-end: 8px">Side projects where craft and code meet in practice.</p>
-                            <div style="display: flex; justify-content: center; gap:8px; margin-block-start: 8px">
+                            <p style="text-wrap: pretty; font-size: 18px; text-align: center; margin-block-end: 8px">Side projects where craft and code meet in practice.</p>
+                            <div style="display: flex; justify-content: center; gap:8px; flex-wrap: wrap; margin-block-start: 8px">
                                 <div><a href="https://github.com/jonathanelbom" target="_blank">github.com/jonathanelbom</a></div>
-                                |
                                 <div><a href="https://github.com/mentalmodeler" target="_blank">github.com/mentalmodeler</a></div>
                             </div>
                             
@@ -147,7 +146,7 @@
   <div>
     <div class="Portfolio__section__title">${p.title}</div>
     ${p.tech ? `<div class="Portfolio__section__tech">${p.tech}</div>` : ''}
-    <div>${p.description}</div>
+    <div style="text-wrap: pretty;">${p.description}</div>
     <div class="Portfolio__section__links">
       ${linksHtml}
     </div>
