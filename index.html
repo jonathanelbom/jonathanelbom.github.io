@@ -7,16 +7,14 @@
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=1"
         />
-        <title>Jonathan Elbom - Crafted UX</title>
+        <title>Jonathan Elbom - Craft meets Code</title>
         <link rel="stylesheet" href="css/styles-0.min.css" />
         <link rel="stylesheet" href="css/styles-1.min.css" />
         <link rel="stylesheet" href="css/styles.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap"
-            rel="stylesheet"
-        />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@100;300;400;500;700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap"
             rel="stylesheet"
         />
     </head>
@@ -29,18 +27,18 @@
                             <img class="Portfolio__header-image" src="./images/jonathan-avatar.png" />
                             <div>    
                                 <h1>Jonathan Elbom</h1>
-                                <h2>Crafted UX</h2>
+                                <h2>Craft meets Code</h2>
                             </div>
                         </div>
                         <p>
-                            Expertise in the design and implementation of Interaction, Motion, and UI/UX
+                            Design intuition paired with engineering depth - an eye for motion, interaction, and the details that matter.
                         </p>
                     </div>
                 </header>
                 <main class="Portfolio__toc">
                     <div class="Portfolio__wrapper">
                         <ul class="Portfolio__section" id="projects-list">
-                            <p style="font-size: 18px;">This is a collection of side projects that reside in my GitHub repo.</p>
+                            <p style="font-size: 18px; text-align: center;">Side projects where craft and code meet in practice.</p>
                             <hr/>
                         </ul>
                     </div>
@@ -54,7 +52,7 @@
                         image: './images/bedtime.png',
                         title: 'Bedtime',
                         tech: 'Nuxt4 | OpenAI API | Tailwind CSS',
-                        description: 'An AI rhythm-section consultant for bedroom music makers — you describe a vibe and the AI streams back personalized production guidance for drums, bass, keys, guitar, and more.',
+                        description: 'An AI rhythm-section consultant for bedroom music makers - you describe a vibe and the AI streams back personalized production guidance for drums, bass, keys, guitar, and more.',
                         links: [
                             { label: 'Launch Bedtime', url: 'https://bedtime-zeta.vercel.app/', italic: false },
                             { label: 'View source on github', url: 'https://github.com/jonathanelbom/bedtime', italic: true }
@@ -69,7 +67,17 @@
                             { label: 'Launch Mental Modeler', url: 'https://mentalmodeler.github.io/mentalmodeler-js/', italic: false },
                             { label: 'View source on github', url: 'https://github.com/mentalmodeler', italic: true }
                         ]
-                    },    
+                    },
+                    {
+                        image: './images/psu-focos.png',
+                        title: 'PSU Focos',
+                        tech: 'React | Material UI | SASS',
+                        description: 'A UX prototype for exploring scenario outcomes - tweak model inputs as strategies and compare how the changes ripple across nodes.',
+                        links: [
+                            { label: 'Launch PSU Focus flow prototype', url: 'https://jonathanelbom.github.io/psu-focos/', italic: false },
+                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/psu-focos', italic: true }
+                        ]
+                    },
                     {
                         image: './images/dotz.png',
                         title: 'Dotz',
@@ -83,7 +91,8 @@
                     {
                         image: './images/factor-that.png',
                         title: 'FactorTHAT',
-                        description: 'Once I built a factoring tree in Actionscript. Now I built a factoring tree in Javascript.',
+                        tech: 'React | Next.js | SASS',
+                        description: 'A drag-and-drop prime factorization tree - drop prime tokens onto any number to split it and reveal its factors step by step.',
                         links: [
                             { label: 'Launch FactorTHAT', url: 'https://jonathanelbom.github.io/factoring/', italic: false },
                             { label: 'View source on github', url: 'https://github.com/jonathanelbom/factoring', italic: true }
@@ -92,19 +101,11 @@
                     {
                         image: './images/friday-night-jamz.png',
                         title: 'Friday Night Jamz',
-                        description: 'We jammed on fridays so I archived it.',
+                        tech: 'jQuery | Wavesurfer.js | Bootstrap',
+                        description: 'Browse an archive of original Friday night jam sessions - stream any track with a live waveform, on mobile or desktop.',
                         links: [
                             { label: 'Launch Friday Night Jamz', url: 'https://jonathanelbom.github.io/fridaynightjamz/', italic: false },
                             { label: 'View source on github', url: 'https://github.com/jonathanelbom/fridaynightjamz', italic: true }
-                        ]
-                    },
-                    {
-                        image: './images/psu-focos.png',
-                        title: 'PSU Focos',
-                        description: 'I did UX consulting and some interface prototyping for Portland State University.',
-                        links: [
-                            { label: 'Launch PSU Focus flow prototype', url: 'https://jonathanelbom.github.io/psu-focos/', italic: false },
-                            { label: 'View source on github', url: 'https://github.com/jonathanelbom/psu-focos', italic: true }
                         ]
                     },
                     {
@@ -120,7 +121,8 @@
                     {
                         image: './images/search.png',
                         title: 'Search',
-                        description: 'Motion and interaction demo for doggie search experience.',
+                        tech: 'React | Next.js | SASS',
+                        description: 'A keyboard-triggered search prompt with animated transitions - type to filter and sort results, all with polished motion design.',
                         links: [
                             { label: 'Launch Search demo', url: 'https://jonathanelbom.github.io/ux-demo/', italic: false },
                             { label: 'View source on github', url: 'https://github.com/jonathanelbom/ux-demo', italic: true }
